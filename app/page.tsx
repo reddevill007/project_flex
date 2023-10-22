@@ -11,7 +11,7 @@ export default function Home({ searchParams }: searchParams) {
       <Featured />
       <CategoryList />
       <div className="flex w-full container mx-auto">
-        <CardList page={page} />
+        <CardList page={page} cat="" />
         <Menu />
       </div>
     </div>
