@@ -42,7 +42,7 @@ export const POST = async (req: NextRequest) => {
     const newBody = { ...body, postSlug: decodeURI(postSlug) };
 
     const comment = await prisma.comments.create({
-      data: { ...newBody, userEmail: session.user.email },
+      data: { ...newBody, userEmail: session?.user?.email },
     });
 
     return new NextResponse(JSON.stringify(comment));
