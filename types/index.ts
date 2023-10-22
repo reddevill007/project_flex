@@ -83,3 +83,10 @@ export type searchParams = {
     page: string;
   };
 };
+
+export type searchCatParams = {
+  searchParams: {
+    page: string;
+    cat: string;
+  };
+};

@@ -22,9 +22,10 @@ const CategoryList = async () => {
       <div className="flex gap-10">
         {data?.map((item: Category) => (
           <div key={item.id}>
-            <Link href="/blog?cat=style">
+            <Link href={`/blog?cat=${item.slug}`}>
               <div className="h-8 w-8 rounded-full bg-red-200"></div>
               <p>{item.title}</p>
+              <p>{item.slug}</p>
             </Link>
           </div>
         ))}
