@@ -17,11 +17,11 @@ export const GET = async (req: NextRequest) => {
       include: { user: true },
     });
 
-    return new NextResponse(JSON.stringify(comments, { status: 200 }));
+    return new NextResponse(JSON.stringify(comments));
   } catch (err) {
     // console.log(err);
     return new NextResponse(
-      JSON.stringify({ message: "Something went wrong!" }, { status: 500 })
+      JSON.stringify({ message: "Something went wrong!" })
     );
   }
 };
@@ -31,9 +31,7 @@ export const POST = async (req: NextRequest) => {
   const session = await getAuthSession();
 
   if (!session) {
-    return new NextResponse(
-      JSON.stringify({ message: "Not Authenticated!" }, { status: 401 })
-    );
+    return new NextResponse(JSON.stringify({ message: "Not Authenticated!" }));
   }
 
   try {
