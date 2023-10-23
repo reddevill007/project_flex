@@ -3,15 +3,19 @@ import Link from "next/link";
 import React from "react";
 
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/categories", {
-    cache: "no-store",
-  });
+  try {
+    const res = await fetch("/api/categories", {
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
-    throw new Error("Failed");
+    if (!res.ok) {
+      throw new Error("Failed");
+    }
+
+    return res.json();
+  } catch (error) {
+    throw new Error("Something went wrong");
   }
-
-  return res.json();
 };
 
 const CategoryList = async () => {

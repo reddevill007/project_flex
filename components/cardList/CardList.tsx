@@ -4,17 +4,18 @@ import Pagination from "../pagination/Pagination";
 import { Post } from "@/types";
 
 const getData = async (page: number, cat: string) => {
-  const res = await fetch(
-    `http:localhost:3000/api/posts?page=${page}&cat=${cat || ""}`,
-    {
+  try {
+    const res = await fetch(`/api/posts?page=${page}&cat=${cat || ""}`, {
       cache: "no-cache",
+    });
+    if (!res.ok) {
+      throw new Error("Could not load categories");
     }
-  );
-  if (!res.ok) {
-    throw new Error("Could not load categories");
-  }
 
-  return res.json();
+    return res.json();
+  } catch (error) {
+    throw new Error("Something went wrong");
+  }
 };
 
 const CardList = async ({ page, cat }: { page: number; cat: string }) => {

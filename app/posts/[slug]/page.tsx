@@ -4,7 +4,7 @@ import { Post } from "@/types";
 import React from "react";
 
 const getData = async (slug: string) => {
-  const res = await fetch(`http:localhost:3000/api/posts/${slug}`, {
+  const res = await fetch(`/api/posts/${slug}`, {
     cache: "no-cache",
   });
   if (!res.ok) {
