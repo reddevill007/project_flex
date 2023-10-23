@@ -3,7 +3,6 @@
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 import {
   getStorage,
@@ -11,10 +10,13 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import dynamic from "next/dynamic";
 
 import { app } from "@/utils/firebase";
 
 const CreateProjectPage = () => {
+  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
   const { status } = useSession();
   const router = useRouter();
 
