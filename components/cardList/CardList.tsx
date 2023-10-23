@@ -5,9 +5,12 @@ import { Post } from "@/types";
 
 const getData = async (page: number, cat: string) => {
   try {
-    const res = await fetch(`/api/posts?page=${page}&cat=${cat || ""}`, {
-      cache: "no-cache",
-    });
+    const res = await fetch(
+      `${process.env.NEXTAUTH_URL}/api/posts?page=${page}&cat=${cat || ""}`,
+      {
+        cache: "no-cache",
+      }
+    );
     if (!res.ok) {
       throw new Error("Could not load categories");
     }

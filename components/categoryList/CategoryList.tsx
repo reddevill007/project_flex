@@ -4,7 +4,7 @@ import React from "react";
 
 const getData = async () => {
   try {
-    const res = await fetch("/api/categories", {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/categories`, {
       cache: "no-store",
     });
 
