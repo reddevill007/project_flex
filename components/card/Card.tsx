@@ -8,8 +8,14 @@ const Card = ({ post }: { post: Post }) => {
   return (
     <div className="flex w-full gap-4" key={post.id}>
       <div className="w-1/2 h-[300px]">
-        {post.img && (
-          <img src={post.img} alt="" className="h-full w-full object-cover" />
+        {post.img ? (
+          <img src={post.img} alt="" className="w-96 h-auto object-cover" />
+        ) : (
+          <img
+            src="/background.jpg"
+            alt=""
+            className="w-96 h-auto object-cover"
+          />
         )}
       </div>
       <div className="w-1/2 h-[300px] flex flex-col justify-between">

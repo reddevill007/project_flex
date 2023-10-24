@@ -4,7 +4,7 @@ const Featured = () => {
   return (
     <div className="h-[calc(100vh-80px)]">
       <div className="container mx-auto flex h-full">
-        <div className="w-1/2 h-full flex items-center justify-start">
+        <div className="w-1/2 h-full flex items-center justify-start -skew-x-2">
           <img
             src="/background.jpg"
             alt=""
