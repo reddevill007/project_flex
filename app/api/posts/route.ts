@@ -14,6 +14,7 @@ export const GET = async (req: NextRequest) => {
   const query = {
     take: POST_PER_PAGE,
     skip: POST_PER_PAGE * (page ? parseInt(page) - 1 : 1),
+    include: { user: true },
     where: {
       ...(cat && { catSlug: cat }),
     },

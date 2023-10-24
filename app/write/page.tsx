@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import "react-quill/dist/quill.bubble.css";
 import {
@@ -93,6 +93,8 @@ const CreateProjectPage = () => {
         catSlug: catSlug || "devops",
       }),
     });
+
+    router.push(`/posts/${slugify(title)}`);
   };
 
   const handleSetFile = (event: React.ChangeEvent<HTMLInputElement>) => {

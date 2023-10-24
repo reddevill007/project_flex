@@ -16,16 +16,32 @@ const Card = ({ post }: { post: Post }) => {
         <span>{post.createdAt.toString().substring(0, 10)}</span>
         <span>{post.catSlug}</span>
         <h3>{post.title}</h3>
+
+        <Link href={`/user/${post.user.id}`}>
+          <div className="flex items-center gap-4">
+            <img
+              src={post.user.image}
+              alt={post.user.name}
+              className="h-10 w-10 rounded-full"
+            />
+            <div>
+              <p className="text-xl">{post.user.name}</p>
+            </div>
+          </div>
+        </Link>
         <div>
           <div className="flex gap-2">
             {tech_arr.map((tech) => (
-              <span className="w-fit px-3 py-1 rounded-xl bg-blue-700/50">
+              <span
+                className="w-fit px-3 py-1 rounded-xl bg-blue-700/50"
+                key={tech}
+              >
                 {tech}
               </span>
             ))}
           </div>
         </div>
-        <p>{post.desc}</p>
+        <div dangerouslySetInnerHTML={{ __html: post.desc.substring(0, 60) }} />
         <Link href={`/posts/${post.slug}`} className="border p-3 w-fit">
           Read More
         </Link>

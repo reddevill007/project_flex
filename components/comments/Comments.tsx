@@ -29,8 +29,6 @@ const Comments = ({ postSlug }: { postSlug: string }) => {
   const [desc, setDesc] = useState("");
 
   const handlesubmit = async () => {
-    console.log("clicked");
-
     await fetch("/api/comments", {
       method: "POST",
       body: JSON.stringify({ desc, postSlug }),
@@ -54,20 +52,33 @@ const Comments = ({ postSlug }: { postSlug: string }) => {
       ) : (
         <Link href="/login">Login to write a comment</Link>
       )}
-      {isLoading
-        ? "Loading..."
-        : data?.map((comment: Comments) => (
-            <div key={comment.id}>
-              <img
-                src={comment.user.image}
-                alt={comment.user.name}
-                className="h-10 w-10 rounded-full"
-              />
-              <p>{comment.user.name}</p>
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <div className="flex flex-col gap-10">
+          {data?.map((comment: Comments) => (
+            <div
+              key={comment.id}
+              className="w-full p-10 rounded-lg bg-white text-gray-700 flex flex-col gap-5"
+            >
+              <div className="flex items-center gap-4">
+                <img
+                  src={comment.user.image}
+                  alt={comment.user.name}
+                  className="h-10 w-10 rounded-full"
+                />
+                <div>
+                  <p className="text-xl">{comment.user.name}</p>
+                  <p className="text-xs">
+                    {comment.createdAt.toString().substring(0, 10)}
+                  </p>
+                </div>
+              </div>
               <p>{comment.desc}</p>
-              <p>{comment.createdAt.toString().substring(0, 10)}</p>
             </div>
           ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -7,8 +7,11 @@ export type User = {
   accounts: Account[];
   sessions: Session[];
   posts: Post[];
+  Post: Post[];
   comments: Comment[];
+  Comments: Comment[];
   likes: Like[];
+  Like: Like[];
 };
 
 export type Account = {

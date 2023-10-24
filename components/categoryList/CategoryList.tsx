@@ -19,17 +19,18 @@ const getData = async () => {
 };
 
 const CategoryList = async () => {
-  const data = await getData();
+  const categories = await getData();
+
   return (
     <div className="container mx-auto py-20">
       <h1>Populat Category</h1>
       <div className="flex gap-10">
-        {data?.map((item: Category) => (
-          <div key={item.id}>
-            <Link href={`/blog?cat=${item.slug}`}>
+        {categories?.map((category: Category) => (
+          <div key={category.id}>
+            <Link href={`/blog?cat=${category.slug}`}>
               <div className="h-8 w-8 rounded-full bg-red-200"></div>
-              <p>{item.title}</p>
-              <p>{item.slug}</p>
+              <p>{category.title}</p>
+              <p>{category.slug}</p>
             </Link>
           </div>
         ))}
