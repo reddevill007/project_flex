@@ -50,7 +50,7 @@ const ProjectDetailPage = async ({ params }: any) => {
         </p>
       </div>
 
-      <div className="flex">
+      <div className="flex mb-10">
         <div
           className="flex flex-col gap-4"
           dangerouslySetInnerHTML={{ __html: post.desc }}

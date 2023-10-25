@@ -20,7 +20,7 @@ const Card = ({ post }: { post: Post }) => {
       </div>
       <div className="w-1/2 h-[300px] flex flex-col justify-between">
         <span>{post.createdAt.toString().substring(0, 10)}</span>
-        <span>{post.catSlug}</span>
+        <span>{post.cat.title}</span>
         <h3>{post.title}</h3>
 
         <Link href={`/user/${post.user.id}`}>

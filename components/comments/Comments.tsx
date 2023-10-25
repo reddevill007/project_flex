@@ -37,7 +37,7 @@ const Comments = ({ postSlug }: { postSlug: string }) => {
   };
   return (
     <div className="w-full">
-      <h1 className="mb-10 text-4xl">Comments</h1>
+      <h1 className="mb-5 text-4xl">Comments</h1>
       {status === "authenticated" ? (
         <div className="mb-5">
           <textarea

@@ -30,7 +30,6 @@ const CategoryList = async () => {
             <Link href={`/blog?cat=${category.slug}`}>
               <div className="h-8 w-8 rounded-full bg-red-200"></div>
               <p>{category.title}</p>
-              <p>{category.slug}</p>
             </Link>
           </div>
         ))}

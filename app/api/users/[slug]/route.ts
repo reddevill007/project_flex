@@ -6,7 +6,6 @@ import type { NextRequest } from "next/server";
 
 export const GET = async (req: NextRequest, { params }: { params: any }) => {
   const { slug } = params;
-  console.log(slug);
 
   try {
     const user = await prisma.user.findUnique({

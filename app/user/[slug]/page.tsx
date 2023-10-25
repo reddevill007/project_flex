@@ -17,8 +17,6 @@ const UserDetailPage = async ({ params }: any) => {
 
   const user: User = await getData(slug);
 
-  console.log(user.Comments);
-
   return (
     <div className="container mx-auto">
       {/* Header */}
