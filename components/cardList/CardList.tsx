@@ -23,7 +23,6 @@ const getData = async (page: number, cat: string) => {
 
 const CardList = async ({ page, cat }: { page: number; cat: string }) => {
   const { posts, count } = await getData(page, cat);
-  console.log(posts);
 
   const POST_PER_PAGE = 2;
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
@@ -35,7 +34,7 @@ const CardList = async ({ page, cat }: { page: number; cat: string }) => {
       {posts.length === 0 && (
         <div className="w-full p-10 bg-red-600">No items to show</div>
       )}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 mb-10">
         {posts.map((post: Post) => (
           <Card post={post} key={post.id} />
         ))}

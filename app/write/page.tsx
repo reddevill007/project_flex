@@ -4,14 +4,9 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import "react-quill/dist/quill.bubble.css";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
 import dynamic from "next/dynamic";
 import { app } from "@/utils/firebase";
+import { uploadImage } from "@/utils/uploadImage";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const CreateProjectPage = () => {
@@ -20,49 +15,21 @@ const CreateProjectPage = () => {
 
   const [file, setFile] = useState<File | null>(null);
   const [open, setOpen] = useState(false);
-  const [media, setMedia] = useState("");
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [tech, setTech] = useState("");
+  const [media, setMedia] = useState("");
   const [catSlug, setCatSlug] = useState("");
   const [liveLink, setLiveLink] = useState("");
   const [codeLink, setCodeLink] = useState("");
 
+  let updateMedia;
+
   useEffect(() => {
-    const storage = getStorage(app);
-    const upload = () => {
-      if (file) {
-        const name = new Date().getTime() + file.name;
-        const storageRef = ref(storage, name);
-
-        const uploadTask = uploadBytesResumable(storageRef, file);
-
-        uploadTask.on(
-          "state_changed",
-          (snapshot) => {
-            const progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
-            switch (snapshot.state) {
-              case "paused":
-                console.log("Upload is paused");
-                break;
-              case "running":
-                console.log("Upload is running");
-                break;
-            }
-          },
-          (error) => {},
-          () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              setMedia(downloadURL);
-            });
-          }
-        );
-      }
-    };
-
-    file && upload();
+    if (file) {
+      updateMedia = setMedia;
+      uploadImage(file, updateMedia);
+    }
   }, [file]);
 
   if (status === "loading") {
@@ -121,6 +88,11 @@ const CreateProjectPage = () => {
       ["clean"],
     ],
   };
+
+  const removeSelectedImage = () => {
+    setFile(null);
+  };
+
   return (
     <div className="container mt-16 mx-auto">
       <input
@@ -151,8 +123,16 @@ const CreateProjectPage = () => {
         className="text-black"
         onChange={(e) => setCatSlug(e.target.value)}
       >
-        <option value="devops">devops</option>
-        <option value="web dev">web dev</option>
+        <option value="web-development">Web Development</option>
+        <option value="frontend-development">Frontend development</option>
+        <option value="backend-development">Backend development</option>
+        <option value="desktop-application-development">
+          desktop-application-development
+        </option>
+        <option value="mobile-app-development">Mobile app development</option>
+        <option value="cloud-computing">Cloud computing</option>
+        <option value="application-development">Application development</option>
+        <option value="full-stack-development">Full stack development</option>
       </select>
       <div className="flex gap-5 h-[700px] relative my-5">
         <button
@@ -179,6 +159,15 @@ const CreateProjectPage = () => {
             </button>
           </div>
         )}
+
+        <div>
+          {file && (
+            <div>
+              <img src={URL.createObjectURL(file)} alt="Thumb" />
+              <button onClick={removeSelectedImage}>Remove This Image</button>
+            </div>
+          )}
+        </div>
         <ReactQuill
           className="w-full mt-10"
           theme="bubble"
