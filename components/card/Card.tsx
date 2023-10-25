@@ -9,12 +9,12 @@ const Card = ({ post }: { post: Post }) => {
     <div className="flex w-full gap-4" key={post.id}>
       <div className="w-1/2 h-[300px]">
         {post.img ? (
-          <img src={post.img} alt="" className="w-96 h-auto object-cover" />
+          <img src={post.img} alt="" className="w-auto h-96 object-cover" />
         ) : (
           <img
             src="/background.jpg"
             alt=""
-            className="w-96 h-auto object-cover"
+            className="w-auto h-[100px] object-cover"
           />
         )}
       </div>
@@ -47,6 +47,7 @@ const Card = ({ post }: { post: Post }) => {
             ))}
           </div>
         </div>
+        <p>{post.views}</p>
         <div dangerouslySetInnerHTML={{ __html: post.desc.substring(0, 60) }} />
         <Link href={`/posts/${post.slug}`} className="border p-3 w-fit">
           Read More

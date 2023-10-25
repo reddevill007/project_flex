@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import NextTopLoader from "nextjs-toploader";
+import { Toaster } from "sonner";
 import { Space_Grotesk } from "next/font/google";
+
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
@@ -23,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={spaceGrotesk.className}>
+        <Toaster richColors position="top-center" />
         <NextTopLoader color="#2299DD" />
         <AuthProvider>
           <Navbar />

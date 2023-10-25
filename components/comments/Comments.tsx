@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import useSWR from "swr";
+import { toast } from "sonner";
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -29,11 +30,18 @@ const Comments = ({ postSlug }: { postSlug: string }) => {
   const [desc, setDesc] = useState("");
 
   const handlesubmit = async () => {
+    if (desc.length === 0) {
+      toast.error("comment can not be empty");
+      return;
+    }
+
     await fetch("/api/comments", {
       method: "POST",
       body: JSON.stringify({ desc, postSlug }),
     });
     mutate();
+    setDesc("");
+    toast.success("comment added");
   };
   return (
     <div className="w-full">
@@ -43,6 +51,7 @@ const Comments = ({ postSlug }: { postSlug: string }) => {
           <textarea
             placeholder="write a comment..."
             className="w-4/5 max-h-10 text-black"
+            value={desc}
             onChange={(e) => setDesc(e.target.value)}
           />
           <button className="border px-2 py-4" onClick={handlesubmit}>

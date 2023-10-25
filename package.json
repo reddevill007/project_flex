@@ -19,6 +19,7 @@
     "react-dom": "^18",
     "react-loader-spinner": "^5.4.5",
     "react-quill": "^2.0.0",
+    "sonner": "^1.0.3",
     "swr": "^2.2.4"
   },
   "devDependencies": {

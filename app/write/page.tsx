@@ -11,12 +11,10 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import dynamic from "next/dynamic";
-
 import { app } from "@/utils/firebase";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const CreateProjectPage = () => {
-  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-
   const { status } = useSession();
   const router = useRouter();
 
@@ -108,6 +106,21 @@ const CreateProjectPage = () => {
     }
   };
 
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { header: "3" }, { font: [] }],
+      [{ size: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link"],
+      ["clean"],
+    ],
+  };
   return (
     <div className="container mt-16 mx-auto">
       <input
@@ -141,16 +154,12 @@ const CreateProjectPage = () => {
         <option value="devops">devops</option>
         <option value="web dev">web dev</option>
       </select>
-      <div className="flex gap-5 h-[700px] relative">
+      <div className="flex gap-5 h-[700px] relative my-5">
         <button
           className="h-9 w-9 border rounded-full bg-transparent flex items-center justify-center cursor-pointer"
           onClick={() => setOpen(!open)}
         >
-          <img
-            src="/background.jpg"
-            className="h-10 w-10 rounded-full"
-            alt=""
-          />
+          +
         </button>
         {open && (
           <div className="flex gap-5 absolute z-[5] w-full left-[50px]">
@@ -158,26 +167,24 @@ const CreateProjectPage = () => {
               <input
                 type="file"
                 id="image"
+                accept="image/png, image/gif, image/jpeg"
                 onChange={(e) => handleSetFile(e)}
                 className="hidden"
               />
               <label htmlFor="image">
-                <div className="h-10 w-10 rounded-full bg-red-900 cursor-pointer" />
+                <div className="h-10 w-10 rounded-full bg-red-900 cursor-pointer">
+                  img
+                </div>
               </label>
-            </button>
-            <button className="h-9 w-9 border rounded-full bg-transparent flex items-center justify-center cursor-pointer">
-              <div className="h-10 w-10 rounded-full bg-red-900" />
-            </button>
-            <button className="h-9 w-9 border rounded-full bg-transparent flex items-center justify-center cursor-pointer">
-              <div className="h-10 w-10 rounded-full bg-red-900" />
             </button>
           </div>
         )}
         <ReactQuill
-          className="w-full"
+          className="w-full mt-10"
           theme="bubble"
           value={value}
           onChange={setValue}
+          modules={modules}
           placeholder="Showcase your project"
         />
       </div>
