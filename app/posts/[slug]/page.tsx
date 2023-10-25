@@ -1,7 +1,7 @@
+import Link from "next/link";
 import Comments from "@/components/comments/Comments";
 import Menu from "@/components/menu/Menu";
 import { Post } from "@/types";
-import React from "react";
 
 const getData = async (slug: string) => {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${slug}`, {
@@ -23,7 +23,24 @@ const ProjectDetailPage = async ({ params }: any) => {
     <div className="container mx-auto">
       <div>
         <img src={post.img} alt="efcd" />
-        <h1>{post.title}</h1>
+        <h1 className="mb-10 text-7xl">{post.title}</h1>
+      </div>
+
+      <div className="flex w-full gap-4 mb-10">
+        <Link
+          className="px-3 py-2 border"
+          href={post.projectLink}
+          target="_blank"
+        >
+          Project Preview
+        </Link>
+        <Link
+          className="px-3 py-2 border"
+          href={post.projectCode}
+          target="_blank"
+        >
+          Project Code
+        </Link>
       </div>
 
       <div>
@@ -34,7 +51,10 @@ const ProjectDetailPage = async ({ params }: any) => {
       </div>
 
       <div className="flex">
-        <div dangerouslySetInnerHTML={{ __html: post.desc }} />
+        <div
+          className="flex flex-col gap-4"
+          dangerouslySetInnerHTML={{ __html: post.desc }}
+        />
         <Menu />
       </div>
       <Comments postSlug={slug} />

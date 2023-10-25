@@ -32,6 +32,9 @@ const CardList = async ({ page, cat }: { page: number; cat: string }) => {
   return (
     <div className="flex-[5]">
       <h1 className="text-4xl">Recent Posts</h1>
+      {posts.length === 0 && (
+        <div className="w-full p-10 bg-red-600">No items to show</div>
+      )}
       <div className="flex flex-col gap-4">
         {posts.map((post: Post) => (
           <Card post={post} key={post.id} />

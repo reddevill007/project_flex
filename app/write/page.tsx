@@ -27,6 +27,8 @@ const CreateProjectPage = () => {
   const [title, setTitle] = useState("");
   const [tech, setTech] = useState("");
   const [catSlug, setCatSlug] = useState("");
+  const [liveLink, setLiveLink] = useState("");
+  const [codeLink, setCodeLink] = useState("");
 
   useEffect(() => {
     const storage = getStorage(app);
@@ -91,6 +93,8 @@ const CreateProjectPage = () => {
         img: media,
         slug: slugify(title),
         catSlug: catSlug || "devops",
+        projectLink: liveLink,
+        projectCode: codeLink,
       }),
     });
 
@@ -117,6 +121,18 @@ const CreateProjectPage = () => {
         placeholder="tech"
         className="p-[50px] text-7xl bg-transparent outline-none placeholder:text-gray-400"
         onChange={(e) => setTech(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Live Preview"
+        className="p-[50px] text-7xl bg-transparent outline-none placeholder:text-gray-400"
+        onChange={(e) => setLiveLink(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Code Github Link"
+        className="p-[50px] text-7xl bg-transparent outline-none placeholder:text-gray-400"
+        onChange={(e) => setCodeLink(e.target.value)}
       />
       <select
         className="text-black"

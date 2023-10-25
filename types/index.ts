@@ -12,6 +12,9 @@ export type User = {
   Comments: Comment[];
   likes: Like[];
   Like: Like[];
+  Github: string;
+  LinkedIn: string;
+  Dribble: string;
 };
 
 export type Account = {
@@ -52,6 +55,8 @@ export type Post = {
   user: User;
   comments: Comments[];
   likes: Like[];
+  projectLink: string;
+  projectCode: string;
 };
 
 export type Category = {

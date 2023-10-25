@@ -37,9 +37,9 @@ const Comments = ({ postSlug }: { postSlug: string }) => {
   };
   return (
     <div className="w-full">
-      <h1>Comments</h1>
+      <h1 className="mb-10 text-4xl">Comments</h1>
       {status === "authenticated" ? (
-        <div>
+        <div className="mb-5">
           <textarea
             placeholder="write a comment..."
             className="w-4/5 max-h-10 text-black"
@@ -59,7 +59,7 @@ const Comments = ({ postSlug }: { postSlug: string }) => {
           {data?.map((comment: Comments) => (
             <div
               key={comment.id}
-              className="w-full p-10 rounded-lg bg-white text-gray-700 flex flex-col gap-5"
+              className="w-full p-10 rounded-lg bg-white text-gray-700 flex flex-col gap-5 border"
             >
               <div className="flex items-center gap-4">
                 <img

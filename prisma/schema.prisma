@@ -48,6 +48,9 @@ model User {
   Post          Post[]
   Comments      Comments[]
   Like          Like[]
+  Github        String?
+  LinkedIn      String?
+  Dribble       String?
 }
 
 model VerificationToken {
@@ -67,20 +70,22 @@ model Category {
 }
 
 model Post {
-  id        String     @id @default(cuid()) @map("_id")
-  createdAt DateTime   @default(now())
-  slug      String     @unique
-  title     String
-  desc      String
-  img       String?
-  tech      String
-  views     Int        @default(0)
-  catSlug   String
-  cat       Category   @relation(fields: [catSlug], references: [slug])
-  userEmail String
-  user      User       @relation(fields: [userEmail], references: [email])
-  comments  Comments[]
-  likes     Like[]
+  id          String     @id @default(cuid()) @map("_id")
+  createdAt   DateTime   @default(now())
+  slug        String     @unique
+  title       String
+  desc        String
+  img         String?
+  tech        String
+  views       Int        @default(0)
+  catSlug     String
+  cat         Category   @relation(fields: [catSlug], references: [slug])
+  userEmail   String
+  user        User       @relation(fields: [userEmail], references: [email])
+  comments    Comments[]
+  likes       Like[]
+  projectLink String?
+  projectCode String?
 }
 
 model Comments {
