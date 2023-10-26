@@ -7,6 +7,7 @@ import "react-quill/dist/quill.bubble.css";
 import dynamic from "next/dynamic";
 import { app } from "@/utils/firebase";
 import { uploadImage } from "@/utils/uploadImage";
+import Selection from "@/components/editor/Selection";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const CreateProjectPage = () => {
@@ -119,21 +120,7 @@ const CreateProjectPage = () => {
         className="p-[50px] text-7xl bg-transparent outline-none placeholder:text-gray-400"
         onChange={(e) => setCodeLink(e.target.value)}
       />
-      <select
-        className="text-black"
-        onChange={(e) => setCatSlug(e.target.value)}
-      >
-        <option value="web-development">Web Development</option>
-        <option value="frontend-development">Frontend development</option>
-        <option value="backend-development">Backend development</option>
-        <option value="desktop-application-development">
-          desktop-application-development
-        </option>
-        <option value="mobile-app-development">Mobile app development</option>
-        <option value="cloud-computing">Cloud computing</option>
-        <option value="application-development">Application development</option>
-        <option value="full-stack-development">Full stack development</option>
-      </select>
+      <Selection setCatSlug={setCatSlug} />
       <div className="flex gap-5 h-[700px] relative my-5">
         <button
           className="h-9 w-9 border rounded-full bg-transparent flex items-center justify-center cursor-pointer"

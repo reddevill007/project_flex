@@ -1,7 +1,7 @@
-import React from "react";
 import Card from "../card/Card";
 import Pagination from "../pagination/Pagination";
 import { Post } from "@/types";
+import NoPosts from "./NoPosts";
 
 const getData = async (page: number, cat: string) => {
   try {
@@ -23,6 +23,7 @@ const getData = async (page: number, cat: string) => {
 
 const CardList = async ({ page, cat }: { page: number; cat: string }) => {
   const { posts, count } = await getData(page, cat);
+  posts.reverse();
 
   const POST_PER_PAGE = 2;
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
@@ -31,9 +32,7 @@ const CardList = async ({ page, cat }: { page: number; cat: string }) => {
   return (
     <div className="flex-[5]">
       <h1 className="text-4xl">Recent Posts</h1>
-      {posts.length === 0 && (
-        <div className="w-full p-10 bg-red-600">No items to show</div>
-      )}
+      {posts.length === 0 && <NoPosts cat={cat} />}
       <div className="flex flex-col gap-4 mb-10">
         {posts.map((post: Post) => (
           <Card post={post} key={post.id} />
