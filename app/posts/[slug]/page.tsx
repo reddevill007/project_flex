@@ -18,6 +18,7 @@ const ProjectDetailPage = async ({ params }: any) => {
   const { slug } = params;
 
   const post: Post = await getData(slug);
+  console.log(post);
 
   return (
     <div className="container mx-auto">
