@@ -1,4 +1,5 @@
-import { Comments, User } from "@/types";
+import EditProfile from "@/components/edit-profile/EditProfile";
+import { User } from "@/types";
 import Link from "next/link";
 
 const getData = async (slug: string) => {
@@ -30,6 +31,8 @@ const UserDetailPage = async ({ params }: any) => {
           </div>
         </div>
       </div>
+
+      <EditProfile />
 
       <h2 className="text-3xl">Posts ({user.Post.length})</h2>
       <div className="flex items-center justify-center flex-wrap w-full gap-10 mb-10">

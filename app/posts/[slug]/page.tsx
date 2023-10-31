@@ -2,6 +2,9 @@ import Link from "next/link";
 import Comments from "@/components/comments/Comments";
 import Menu from "@/components/menu/Menu";
 import { Post } from "@/types";
+import DeletePost from "@/components/button/DeletePost";
+import moment from "moment";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const getData = async (slug: string) => {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${slug}`, {
@@ -18,10 +21,10 @@ const ProjectDetailPage = async ({ params }: any) => {
   const { slug } = params;
 
   const post: Post = await getData(slug);
-  console.log(post);
 
   return (
     <div className="container mx-auto">
+      <DeletePost id={post.id} />
       <div>
         <img src={post.img} alt="efcd" />
         <h1 className="mb-10 text-7xl">{post.title}</h1>
@@ -45,15 +48,30 @@ const ProjectDetailPage = async ({ params }: any) => {
       </div>
 
       <div>
-        <img src={post.user.image} className="h-10 w-10 rounded-full" alt="" />
-        <p>
-          {post.user.name}, {post.createdAt.toString().substring(0, 10)}
-        </p>
+        <Link href={`/user/${post.user.id}`}>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center space-x-4">
+              <Avatar>
+                <AvatarImage src={post.user.image} alt={post.user.name} />
+                <AvatarFallback>OM</AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="text-sm font-medium leading-none">
+                  {post.user.name}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {post.user.email}
+                </p>
+              </div>
+            </div>
+          </div>
+        </Link>
+        <p>{moment(post.createdAt).fromNow()}</p>
       </div>
 
       <div className="flex mb-10">
         <div
-          className="flex flex-col gap-4"
+          className="projectDesc"
           dangerouslySetInnerHTML={{ __html: post.desc }}
         />
         <Menu />

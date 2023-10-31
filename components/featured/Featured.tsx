@@ -1,13 +1,11 @@
 import { Post } from "@/types";
+import { removeTags } from "@/utils/utils";
 import Link from "next/link";
 
 const getData = async () => {
   try {
     const res = await fetch(
-      `${process.env.NEXTAUTH_URL}/api/posts/mostViewedPost`,
-      {
-        cache: "no-cache",
-      }
+      `${process.env.NEXTAUTH_URL}/api/posts/mostViewedPost`
     );
     if (!res.ok) {
       throw new Error("Could not load categories");
@@ -37,11 +35,7 @@ const Featured = async () => {
         <div className="flex-1 h-full flex items-center justify-center gap-7 flex-col">
           <p className="w-full">#1 spotlight</p>
           <h1 className="text-5xl font-extrabold">{popularPost?.title}</h1>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: popularPost?.desc.substring(0, 300),
-            }}
-          />
+          <p>{removeTags(popularPost.desc).substring(0, 300)}</p>
           <div>
             <div className="flex gap-2">
               {tech_arr.map((tech) => (
