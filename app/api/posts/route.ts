@@ -28,7 +28,17 @@ export const GET = async (req: NextRequest) => {
 
   try {
     const [posts, count] = await prisma.$transaction([
-      prisma.post.findMany(query),
+      prisma.post.findMany({
+        take: POST_PER_PAGE,
+        skip: POST_PER_PAGE * (page ? parseInt(page) - 1 : 1),
+        include: { user: true, cat: true },
+        where: {
+          ...(cat && { catSlug: cat }),
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      }),
       prisma.post.count({ where: query.where }),
     ]);
     return new NextResponse(JSON.stringify({ posts, count }));
