@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
-import AuthLinks from "../authLinks/AuthLinks";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import NavList from "./NavList";
 
 const Navbar = () => {

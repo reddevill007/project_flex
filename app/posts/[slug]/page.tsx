@@ -24,7 +24,7 @@ const ProjectDetailPage = async ({ params }: any) => {
 
   return (
     <div className="container mx-auto">
-      <DeletePost id={post.id} />
+      <DeletePost id={post.id} authCheck={post.user.email} />
       <div>
         <img src={post.img} alt="efcd" />
         <h1 className="mb-10 text-7xl">{post.title}</h1>

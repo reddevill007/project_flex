@@ -1,7 +1,10 @@
 import { getAuthSession } from "@/utils/auth";
-import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export const GET = async (req: NextRequest) => {
   const { searchParams } = new URL(req.url);
@@ -18,6 +21,9 @@ export const GET = async (req: NextRequest) => {
     where: {
       ...(cat && { catSlug: cat }),
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   };
 
   try {
@@ -31,6 +37,8 @@ export const GET = async (req: NextRequest) => {
     return new NextResponse(
       JSON.stringify({ message: "Something went wrong!" })
     );
+  } finally {
+    await prisma.$disconnect();
   }
 };
 

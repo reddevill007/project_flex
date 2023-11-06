@@ -22,18 +22,18 @@ export const GET = async (req: NextRequest, { params }: { params: any }) => {
   }
 };
 
-export const DELETE = async (req: NextRequest) => {
-  try {
-    const id = req.url.split("/posts/")[1];
-    console.log(id);
+export const DELETE = async (req: NextRequest, { params }: { params: any }) => {
+  console.log("called");
 
-    const result = prisma.post.delete({
+  try {
+    const { slug } = params;
+    console.log(slug);
+
+    const result = await prisma.post.delete({
       where: {
-        id,
+        id: slug,
       },
     });
-    console.log(result);
-
     return NextResponse.json(JSON.stringify(result));
   } catch (err) {
     console.log(err);

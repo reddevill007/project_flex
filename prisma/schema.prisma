@@ -79,9 +79,9 @@ model Post {
   tech        String
   views       Int        @default(0)
   catSlug     String
-  cat         Category   @relation(fields: [catSlug], references: [slug])
+  cat         Category   @relation(fields: [catSlug], references: [slug], onDelete: Cascade)
   userEmail   String
-  user        User       @relation(fields: [userEmail], references: [email])
+  user        User       @relation(fields: [userEmail], references: [email], onDelete: Cascade)
   comments    Comments[]
   likes       Like[]
   projectLink String?
@@ -93,16 +93,16 @@ model Comments {
   createdAt DateTime @default(now())
   desc      String
   userEmail String
-  user      User     @relation(fields: [userEmail], references: [email])
+  user      User     @relation(fields: [userEmail], references: [email], onDelete: Cascade)
   postSlug  String
-  post      Post     @relation(fields: [postSlug], references: [slug])
+  post      Post     @relation(fields: [postSlug], references: [slug], onDelete: Cascade)
 }
 
 model Like {
   id        String   @id @default(cuid()) @map("_id")
   createdAt DateTime @default(now())
   userEmail String
-  user      User     @relation(fields: [userEmail], references: [email])
+  user      User     @relation(fields: [userEmail], references: [email], onDelete: Cascade)
   postSlug  String
-  post      Post     @relation(fields: [postSlug], references: [slug])
+  post      Post     @relation(fields: [postSlug], references: [slug], onDelete: Cascade)
 }
