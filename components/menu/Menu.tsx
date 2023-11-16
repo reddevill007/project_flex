@@ -32,34 +32,7 @@ const Menu = async () => {
   const users: User[] = await getData();
 
   return (
-    // <div className="flex-[2]">
-    //   <div className="">
-    //     {users.map((user: User) => (
-    //       <div
-    //         className="flex w-full justify-between border-b py-2"
-    //         key={user.id}
-    //       >
-    //         <div className="flex items-center gap-4">
-    //           <img
-    //             src={user.image}
-    //             alt={user.name}
-    //             className="h-10 w-10 rounded-full"
-    //           />
-    //           <div>
-    //             <p className="text-xl">{user.name}</p>
-    //           </div>
-    //         </div>
-    // <Link
-    //   href={`/user/${user.id}`}
-    //   className="border text-lg text-white px-3 py-2 rounded bg-gray-600"
-    // >
-    //           View
-    //         </Link>
-    //       </div>
-    //     ))}
-    //   </div>
-    // </div>
-    <Card className="border-none shadow-none">
+    <Card className="shadow-none rounded-none fixed top-[81px] right-0 border-x border-y-1 border">
       <CardHeader>
         <CardTitle>Browse top creators</CardTitle>
         <CardDescription>Here is the list of our top creators</CardDescription>

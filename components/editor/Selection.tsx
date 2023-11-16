@@ -1,4 +1,13 @@
 import React, { Dispatch, SetStateAction } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 const Selection = ({
   setCatSlug,
@@ -6,18 +15,37 @@ const Selection = ({
   setCatSlug: Dispatch<SetStateAction<string>>;
 }) => {
   return (
-    <select className="text-black" onChange={(e) => setCatSlug(e.target.value)}>
-      <option value="web-development">Web Development</option>
-      <option value="frontend-development">Frontend development</option>
-      <option value="backend-development">Backend development</option>
-      <option value="desktop-application-development">
-        desktop-application-development
-      </option>
-      <option value="mobile-app-development">Mobile app development</option>
-      <option value="cloud-computing">Cloud computing</option>
-      <option value="application-development">Application development</option>
-      <option value="full-stack-development">Full stack development</option>
-    </select>
+    <>
+      <Select onValueChange={setCatSlug}>
+        <SelectTrigger className="w-fit">
+          <SelectValue placeholder="Select a category" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectItem value="web-development">Web Development</SelectItem>
+            <SelectItem value="frontend-development">
+              Frontend development
+            </SelectItem>
+            <SelectItem value="backend-development">
+              Backend development
+            </SelectItem>
+            <SelectItem value="desktop-application-development">
+              desktop-application-development
+            </SelectItem>
+            <SelectItem value="mobile-app-development">
+              Mobile app development
+            </SelectItem>
+            <SelectItem value="cloud-computing">Cloud computing</SelectItem>
+            <SelectItem value="application-development">
+              Application development
+            </SelectItem>
+            <SelectItem value="full-stack-development">
+              Full stack development
+            </SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </>
   );
 };
 

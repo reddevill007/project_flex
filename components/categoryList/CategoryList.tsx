@@ -24,7 +24,7 @@ const CategoryList = async () => {
   return (
     <div className="container mx-auto py-20">
       <h1>Populat Category</h1>
-      <div className="flex gap-10 overflow-x-scroll">
+      <div className="flex gap-10 overflow-x-scroll noscroll">
         {categories?.map((category: Category) => (
           <Link key={category.id} href={`/blog?cat=${category.slug}`}>
             <p className="border w-fit px-3 py-2 rounded-full whitespace-nowrap noscrollbar">

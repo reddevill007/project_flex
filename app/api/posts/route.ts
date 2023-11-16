@@ -12,7 +12,7 @@ export const GET = async (req: NextRequest) => {
   const page = searchParams.get("page");
   const cat = searchParams.get("cat");
 
-  const POST_PER_PAGE = 2;
+  const POST_PER_PAGE = 10;
 
   const query = {
     take: POST_PER_PAGE,

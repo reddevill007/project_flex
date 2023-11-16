@@ -16,9 +16,7 @@ export const GET = async (req: NextRequest, { params }: { params: any }) => {
     return new NextResponse(JSON.stringify(post));
   } catch (err) {
     console.log(err);
-    return new NextResponse(
-      JSON.stringify({ message: "Something went wrong!" })
-    );
+    return NextResponse.json({ error: "Post Not Found" }, { status: 404 });
   }
 };
 

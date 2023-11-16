@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  /* outline: 2px solid red; */
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -69,6 +73,14 @@
 .projectDesc strong {
   background-color: red;
   text-decoration: underline;
+}
+
+.noscroll::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 

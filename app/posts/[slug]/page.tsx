@@ -11,7 +11,7 @@ const getData = async (slug: string) => {
     cache: "no-cache",
   });
   if (!res.ok) {
-    throw new Error("Could not load categories");
+    return null;
   }
 
   return res.json();
@@ -22,13 +22,35 @@ const ProjectDetailPage = async ({ params }: any) => {
 
   const post: Post = await getData(slug);
 
-  return (
-    <div className="container mx-auto">
-      <DeletePost id={post.id} authCheck={post.user.email} />
-      <div>
-        <img src={post.img} alt="efcd" />
-        <h1 className="mb-10 text-7xl">{post.title}</h1>
+  if (!post) {
+    return (
+      <div className="w-full h-screen bg-black text-white flex items-center justify-center">
+        Not Found
       </div>
+    );
+  }
+
+  return (
+    <div className="container mx-auto mt-[100px]">
+      <DeletePost id={post.id} authCheck={post.user.email} />
+      <div className="w-full flex justify-center items-center">
+        {post.img ? (
+          <img
+            src={post.img}
+            alt={post.slug}
+            className="rounded-xl h-60 w-auto"
+          />
+        ) : (
+          <img
+            src={`/images/random/random${Math.floor(
+              Math.random() * 4 + 1
+            )}.png`}
+            alt={post.slug}
+            className="rounded-xl h-60 w-auto"
+          />
+        )}
+      </div>
+      <h1 className="mb-10 text-7xl">{post.title}</h1>
 
       <div className="flex w-full gap-4 mb-10">
         <Link
@@ -74,7 +96,6 @@ const ProjectDetailPage = async ({ params }: any) => {
           className="projectDesc"
           dangerouslySetInnerHTML={{ __html: post.desc }}
         />
-        <Menu />
       </div>
       <Comments postSlug={slug} />
     </div>

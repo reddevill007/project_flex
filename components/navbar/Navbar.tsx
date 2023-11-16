@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="flex w-full justify-end px-10 py-4">
+      <div className="flex h-[80px] bg-white z-10 w-full justify-end px-10 py-4 fixed top-0 left-0">
         <div className="flex items-center gap-5 border-b w-fit px-4 pb-2">
           <Link href="/">
             <h1 className="text-3xl hover:text-gray-500 transition-all">
