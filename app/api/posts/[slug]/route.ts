@@ -21,11 +21,8 @@ export const GET = async (req: NextRequest, { params }: { params: any }) => {
 };
 
 export const DELETE = async (req: NextRequest, { params }: { params: any }) => {
-  console.log("called");
-
   try {
     const { slug } = params;
-    console.log(slug);
 
     const result = await prisma.post.delete({
       where: {

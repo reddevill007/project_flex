@@ -24,7 +24,11 @@ const UserDetailPage = async ({ params }: any) => {
       <div className="w-full h-[200px] bg-red-900 relative mb-16">
         <img src="/bg.jpeg" className="h-full w-full object-cover" alt="" />
         <div className="absolute bottom-0 translate-y-1/2 left-4 flex items-center">
-          <img src={user.image} className="rounded-full h-20 w-20" alt="" />
+          <img
+            src={`https://robohash.org/${user.id}?set=set3`}
+            className="rounded-full h-20 w-20"
+            alt=""
+          />
           <div>
             <h1>{user.name}</h1>
             <p>{user.email}</p>

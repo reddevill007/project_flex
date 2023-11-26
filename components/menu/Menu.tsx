@@ -12,6 +12,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Separator } from "../ui/separator";
+import { getInitials } from "@/utils/utils";
 
 const getData = async () => {
   try {
@@ -45,8 +46,11 @@ const Menu = async () => {
               <div className="flex items-center justify-between space-x-4">
                 <div className="flex items-center space-x-4">
                   <Avatar>
-                    <AvatarImage src={user.image} alt={user.name} />
-                    <AvatarFallback>OM</AvatarFallback>
+                    <AvatarImage
+                      src={`https://robohash.org/${user.id}?set=set3`}
+                      alt={user.name}
+                    />
+                    <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
                   </Avatar>
                   <div>
                     <p className="text-sm font-medium leading-none">

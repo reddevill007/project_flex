@@ -5,6 +5,7 @@ import { Post } from "@/types";
 import DeletePost from "@/components/button/DeletePost";
 import moment from "moment";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getInitials } from "@/utils/utils";
 
 const getData = async (slug: string) => {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${slug}`, {
@@ -46,7 +47,7 @@ const ProjectDetailPage = async ({ params }: any) => {
               Math.random() * 4 + 1
             )}.png`}
             alt={post.slug}
-            className="rounded-xl h-60 w-auto"
+            className="rounded-xl h-60 w-full object-cover"
           />
         )}
       </div>
@@ -74,8 +75,11 @@ const ProjectDetailPage = async ({ params }: any) => {
           <div className="flex items-center gap-4">
             <div className="flex items-center space-x-4">
               <Avatar>
-                <AvatarImage src={post.user.image} alt={post.user.name} />
-                <AvatarFallback>OM</AvatarFallback>
+                <AvatarImage
+                  src={`https://robohash.org/${post.user.id}?set=set3`}
+                  alt={post.user.name}
+                />
+                <AvatarFallback>{getInitials(post.user.name)}</AvatarFallback>
               </Avatar>
               <div>
                 <p className="text-sm font-medium leading-none">
