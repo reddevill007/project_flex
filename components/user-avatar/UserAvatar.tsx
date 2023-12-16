@@ -22,8 +22,7 @@ const UserAvatar = ({ userId, userName, userImage, userEmail }: Props) => {
             <AvatarFallback>{getInitials(userName)}</AvatarFallback>
           </Avatar>
           <div>
-            <p className="text-sm font-medium leading-none">{userName}</p>
-            <p className="text-sm text-muted-foreground">{userEmail}</p>
+            <p className="text-lg font-medium leading-none">{userName}</p>
           </div>
         </div>
       </div>

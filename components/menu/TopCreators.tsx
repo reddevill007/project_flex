@@ -31,10 +31,11 @@ const TopCreators = async () => {
         {users.map((user: User) => (
           <div className="mb-4 p-4">
             <div className="mb-4">
-              <Avatar className="mb-2">
+              <Avatar className="mb-2 h-20 w-20">
                 <AvatarImage
                   src={`https://robohash.org/${user.id}?set=set3`}
                   alt={user.name}
+                  className="h-20 w-20"
                 />
                 <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
               </Avatar>

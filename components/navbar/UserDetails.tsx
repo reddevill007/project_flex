@@ -20,9 +20,9 @@ export default function UserDetails() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="flex items-center justify-center gap-2">
-          <Avatar>
+          <Avatar className="w-12 h-12">
             <AvatarImage
-              className="z-1"
+              className="z-1 h-12 w-12"
               src={`https://robohash.org/${data?.user?.email}?set=set3`}
               alt={data?.user?.name ? data?.user?.name : "profilepic"}
             />
