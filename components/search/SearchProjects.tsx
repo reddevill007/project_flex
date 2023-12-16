@@ -1,10 +1,10 @@
 "use client";
 
 import { Post } from "@/types";
-import { Loader } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const getData = async (searchQuery: string) => {};
+import { ColorRing } from "react-loader-spinner";
+import SearchResult from "./SearchResult";
 
 const SearchProjects = () => {
   const [query, setQuery] = useState("");
@@ -28,6 +28,7 @@ const SearchProjects = () => {
           throw new Error("Could not load categories");
         }
         const result = await res.json();
+
         setProjects(result.posts);
       } catch (error) {
         throw new Error("Something went wrong");
@@ -43,25 +44,11 @@ const SearchProjects = () => {
       <input
         onChange={(e) => setQuery(e.target.value)}
         value={query || ""}
-        className="px-5 py-1 w-[300px] sm:px-5 sm:py-3 flex-1 text-zinc-200 bg-zinc-800 focus:bg-black rounded-full focus:outline-none focus:ring-[1px] focus:ring-green-700 placeholder:text-zinc-400"
+        className="px-5 py-2 w-[300px] border-[#dad3cf] border"
         placeholder="What are you looking for?"
       />
-      <button>Search</button>
 
-      <div className="absolute top-20 left-0 w-full h-fit bg-pink-900">
-        {!loading && projects?.length > 0 && query.length > 0 ? (
-          <>
-            {projects.map((project) => (
-              <div key={project.id}>
-                <img src="/images/logo.png" alt="" />
-                <p>{project.title}</p>
-              </div>
-            ))}
-          </>
-        ) : loading ? (
-          <Loader />
-        ) : null}
-      </div>
+      <SearchResult loading={loading} projects={projects} query={query} />
     </div>
   );
 };

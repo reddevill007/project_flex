@@ -6,6 +6,7 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import AuthProvider from "@/providers/AuthProvider";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -14,6 +15,9 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "Project Flex",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +30,10 @@ export default function RootLayout({
       <body className={spaceGrotesk.className}>
         <Toaster richColors position="top-center" />
         <NextTopLoader color="#2299DD" />
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <Sidebar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

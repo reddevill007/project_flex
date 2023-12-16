@@ -5,7 +5,7 @@ export function removeTags(str: string): string {
   return str.replace(/(<([^>]+)>)/gi, "");
 }
 
-export function getInitials(fullName?: string): string {
+export function getInitials(fullName?: string | null): string {
   if (!fullName) {
     return "";
   }

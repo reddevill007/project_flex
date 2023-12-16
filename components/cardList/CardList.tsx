@@ -29,13 +29,13 @@ const CardList = async ({ page, cat }: { page: number; cat: string }) => {
   const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
 
   return (
-    <div className="border-x border-y-1 border mt-[81px] w-[750px] pt-5">
-      <h1 className="text-4xl text-center mb-3">Recent Posts</h1>
+    <div className="container">
+      <h1 className="text-4xl mb-3">Recent Posts</h1>
       {posts.length === 0 ? (
         <NoPosts cat={cat} />
       ) : (
         <>
-          <div className="flex flex-col gap-4 mb-10 items-center justify-center">
+          <div className="flex flex-col gap-4 mb-10">
             {posts.map((post: Post) => (
               <ProjectCard post={post} key={post.id} />
             ))}

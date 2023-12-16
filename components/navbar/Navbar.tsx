@@ -1,56 +1,47 @@
 "use client";
 
-import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { useSession } from "next-auth/react";
-import NavList from "./NavList";
+import Image from "next/image";
+import SearchProjects from "../search/SearchProjects";
+import UserDetails from "./UserDetails";
+import Link from "next/link";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { status } = useSession();
+  const { status, data } = useSession();
 
   return (
-    <>
-      <div className="flex h-[80px] bg-white z-10 w-full justify-end px-10 py-4 fixed top-0 left-0">
-        <div className="flex items-center gap-5 border-b w-fit px-4 pb-2">
-          <Link href="/">
-            <h1 className="text-3xl hover:text-gray-500 transition-all">
-              ProjectFlex
-            </h1>
-          </Link>
-          <span>/</span>
-          <ul className="flex justify-end items-center gap-5">
-            <li className="hover:text-gray-500 transition-all">
-              <Link href="/">Category</Link>
-            </li>
-            <li>/</li>
-            <li className="hover:text-gray-500 transition-all">
-              <Link href="/">Category</Link>
-            </li>
-            <li>/</li>
-            {status === "authenticated" ? (
-              <>
-                <li className="hover:text-gray-500 transition-all">
-                  <Link href="/write">Write</Link>
-                </li>
-                <li>/</li>
-              </>
-            ) : (
-              <>
-                <li className="hover:text-gray-500 transition-all">
-                  <Link href="/login">Login</Link>
-                </li>
-                <li>/</li>
-              </>
-            )}
-          </ul>
-          <button onClick={() => setIsOpen(!isOpen)} className="text-4xl">
-            +
-          </button>
+    <nav className="w-full pt-6 mb-9">
+      <div className="container flex justify-between items-center h-full">
+        <div>
+          {status === "unauthenticated" ? (
+            <div className="text-[#091151]">
+              <h1 className="text-4xl font-bold">Welcome to ProjecrFlex.</h1>
+              <p className="text-[#dad3cf]">
+                Please{" "}
+                <Link className="text-[#e45500] underline" href="/login">
+                  login
+                </Link>{" "}
+                to explore our full feature
+              </p>
+            </div>
+          ) : (
+            <div className="text-[#091151]">
+              <h1 className="text-4xl font-bold">Welcome to ProjecrFlex.</h1>
+              <p className="text-[#dad3cf]">
+                Hello {data?.user?.name}, Welcome Back!!
+              </p>
+            </div>
+          )}
         </div>
+
+        <div>
+          <SearchProjects />
+        </div>
+
+        {status === "unauthenticated" ? "Login" : <UserDetails />}
       </div>
-      {isOpen && <NavList setIsOpen={setIsOpen} isOpen={isOpen} />}
-    </>
+    </nav>
   );
 };
 
