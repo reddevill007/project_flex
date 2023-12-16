@@ -13,6 +13,7 @@ import {
 import { removeTags } from "@/utils/utils";
 import UserAvatar from "../user-avatar/UserAvatar";
 import Link from "next/link";
+import { Separator } from "../ui/separator";
 
 const ProjectCard = ({ post }: { post: Post }) => {
   return (
@@ -24,6 +25,7 @@ const ProjectCard = ({ post }: { post: Post }) => {
           userImage={post.user.image}
           userName={post.user.name}
         />
+        <Separator />
         <p className="text-gray-400 text-sm">
           {moment(post.createdAt).fromNow()}
         </p>

@@ -11,7 +11,7 @@ type Props = {
 const UserAvatar = ({ userId, userName, userImage, userEmail }: Props) => {
   return (
     <Link href={`/user/${userId}`} className="z-1">
-      <div className="flex items-center gap-4 mb-3">
+      <div className="flex items-center gap-4">
         <div className="flex items-center space-x-4">
           <Avatar>
             <AvatarImage

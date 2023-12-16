@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Comments from "@/components/comments/Comments";
-import Menu from "@/components/menu/Menu";
 import { Post } from "@/types";
 import DeletePost from "@/components/button/DeletePost";
 import moment from "moment";
@@ -32,7 +31,7 @@ const ProjectDetailPage = async ({ params }: any) => {
   }
 
   return (
-    <div className="container mx-auto mt-[100px]">
+    <div className="container mx-auto ml-[250px] pt-10 w-[calc(100%-250px)]">
       <DeletePost id={post.id} authCheck={post.user.email} />
       <div className="w-full flex justify-center items-center">
         {post.img ? (
