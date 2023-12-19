@@ -17,7 +17,7 @@ const Selection = ({
   return (
     <>
       <Select onValueChange={setCatSlug}>
-        <SelectTrigger className="w-fit">
+        <SelectTrigger className="max-w-[380px]">
           <SelectValue placeholder="Select a category" />
         </SelectTrigger>
         <SelectContent>

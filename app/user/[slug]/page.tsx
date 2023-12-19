@@ -1,5 +1,6 @@
 import EditProfile from "@/components/edit-profile/EditProfile";
 import { User } from "@/types";
+import { removeTags } from "@/utils/utils";
 import Link from "next/link";
 
 const getData = async (slug: string) => {
@@ -19,10 +20,14 @@ const UserDetailPage = async ({ params }: any) => {
   const user: User = await getData(slug);
 
   return (
-    <div className="container mx-auto">
+    <div className="w-[calc(100%-250px)] ml-[250px] mx-auto">
       {/* Header */}
       <div className="w-full h-[200px] bg-red-900 relative mb-16">
-        <img src="/bg.jpeg" className="h-full w-full object-cover" alt="" />
+        <img
+          src="https://source.unsplash.com/random/1220x420/?code"
+          className="h-full w-full object-cover"
+          alt=""
+        />
         <div className="absolute bottom-0 translate-y-1/2 left-4 flex items-center">
           <img
             src={`https://robohash.org/${user.id}?set=set3`}
@@ -61,11 +66,8 @@ const UserDetailPage = async ({ params }: any) => {
               <span>{post.createdAt.toString().substring(0, 10)}</span>
               <span>{post.catSlug}</span>
               <h3>{post.title}</h3>
-              {/* <div
-                dangerouslySetInnerHTML={{
-                  __html: post.desc.substring(0, 100),
-                }}
-              /> */}
+              <p>{removeTags(post.desc).substring(0, 150)}...</p>
+
               <Link href={`/posts/${post.slug}`} className="border p-3 w-fit">
                 Read More
               </Link>

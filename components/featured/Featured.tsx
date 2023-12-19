@@ -1,6 +1,5 @@
 import { Post } from "@/types";
 import { removeTags } from "@/utils/utils";
-import Link from "next/link";
 import UserAvatar from "../user-avatar/UserAvatar";
 import moment from "moment";
 import { Button } from "../ui/button";
@@ -22,7 +21,7 @@ const getData = async () => {
 
 const Featured = async () => {
   const popularPosts: Post[] = await getData();
-  const popularPost = popularPosts[0];
+  const popularPost = popularPosts[1];
 
   const tech_arr = popularPost.tech.split(" ");
 

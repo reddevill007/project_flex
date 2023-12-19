@@ -28,7 +28,7 @@ const CategoryList = async () => {
         {categories?.map((category: Category) => (
           <Link key={category.id} href={`/blog?cat=${category.slug}`}>
             <p className="border w-fit px-3 py-2 rounded-full whitespace-nowrap noscrollbar">
-              {category.title}
+              &lt;/&gt; {category.title}
             </p>
           </Link>
         ))}

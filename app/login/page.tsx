@@ -1,8 +1,6 @@
 "use client";
 
 import { Icons } from "@/components/icons/icons";
-import GithubSVG from "@/components/svg/GithubSVG";
-import GoogleSVG from "@/components/svg/GoogleSVG";
 import { Button } from "@/components/ui/button";
 import {
   Card,

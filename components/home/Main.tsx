@@ -3,6 +3,7 @@ import Navbar from "../navbar/Navbar";
 import Featured from "../featured/Featured";
 import TopCreators from "../menu/TopCreators";
 import CardList from "../cardList/CardList";
+import CategoryList from "../categoryList/CategoryList";
 
 type MainProps = {
   page: number;
@@ -15,6 +16,7 @@ const Main = ({ page, cat }: MainProps) => {
       <Navbar />
       <Featured />
       <TopCreators />
+      <CategoryList />
       <CardList page={page} cat="" />
     </div>
   );
