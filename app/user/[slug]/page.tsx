@@ -28,20 +28,20 @@ const UserDetailPage = async ({ params }: any) => {
           className="h-full w-full object-cover"
           alt=""
         />
-        <div className="absolute bottom-0 translate-y-1/2 left-4 flex items-center">
+        <div className="absolute bottom-0 -translate-x-1/2 translate-y-1/2 left-1/2 flex items-center bg-black rounded-full p-2">
           <img
-            src={`https://robohash.org/${user.id}?set=set3`}
-            className="rounded-full h-20 w-20"
+            src={`https://robohash.org/${user.email}?set=set4`}
+            className="rounded-full h-28 w-28"
             alt=""
           />
-          <div>
-            <h1>{user.name}</h1>
-            <p>{user.email}</p>
-          </div>
+          <EditProfile id={user.id} authCheck={user.email} />
         </div>
       </div>
 
-      <EditProfile />
+      <div>
+        <h1>{user.name}</h1>
+        <p>{user.email}</p>
+      </div>
 
       <h2 className="text-3xl">Posts ({user.Post.length})</h2>
       <div className="flex items-center justify-center flex-wrap w-full gap-10 mb-10">
@@ -56,7 +56,9 @@ const UserDetailPage = async ({ params }: any) => {
                 />
               ) : (
                 <img
-                  src="/background.jpg"
+                  src={`/images/random/random${Math.floor(
+                    Math.random() * 4 + 1
+                  )}.png`}
                   alt=""
                   className="w-96 h-auto object-cover"
                 />

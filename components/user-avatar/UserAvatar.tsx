@@ -16,7 +16,7 @@ const UserAvatar = ({ userId, userName, userImage, userEmail }: Props) => {
           <Avatar>
             <AvatarImage
               className="z-1"
-              src={`https://robohash.org/${userId}?set=set3`}
+              src={`https://robohash.org/${userEmail}?set=set4`}
               alt={userName}
             />
             <AvatarFallback>{getInitials(userName)}</AvatarFallback>

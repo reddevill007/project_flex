@@ -1,6 +1,7 @@
 import { getAuthSession } from "@/utils/auth";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { createHash } from "crypto";
 
 import { PrismaClient } from "@prisma/client";
 
@@ -61,8 +62,9 @@ export const POST = async (req: NextRequest) => {
 
   try {
     const body = await req.json();
+    const uniqueSlug = generateUniqueSlug(body.title);
     const post = await prisma.post.create({
-      data: { ...body, userEmail: session?.user?.email },
+      data: { ...body, userEmail: session?.user?.email, slug: uniqueSlug },
     });
 
     return new NextResponse(JSON.stringify(post));
@@ -73,3 +75,9 @@ export const POST = async (req: NextRequest) => {
     );
   }
 };
+
+function generateUniqueSlug(projectName: string): string {
+  const hashedValue = createHash("sha256").update(projectName).digest("hex");
+  const shortHash = hashedValue.slice(0, 8);
+  return `${projectName.replace(/\s+/g, "-")}-${shortHash}`;
+}

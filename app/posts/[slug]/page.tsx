@@ -32,7 +32,6 @@ const ProjectDetailPage = async ({ params }: any) => {
 
   return (
     <div className="container mx-auto ml-[250px] pt-10 w-[calc(100%-250px)]">
-      <DeletePost id={post.id} authCheck={post.user.email} />
       <div className="w-full flex justify-center items-center">
         {post.img ? (
           <img
@@ -51,6 +50,7 @@ const ProjectDetailPage = async ({ params }: any) => {
         )}
       </div>
       <h1 className="mb-10 text-7xl">{post.title}</h1>
+      <DeletePost id={post.id} authCheck={post.user.email} />
 
       <div className="flex w-full gap-4 mb-10">
         <Link
@@ -75,7 +75,7 @@ const ProjectDetailPage = async ({ params }: any) => {
             <div className="flex items-center space-x-4">
               <Avatar>
                 <AvatarImage
-                  src={`https://robohash.org/${post.user.id}?set=set3`}
+                  src={`https://robohash.org/${post.user.email}?set=set4`}
                   alt={post.user.name}
                 />
                 <AvatarFallback>{getInitials(post.user.name)}</AvatarFallback>

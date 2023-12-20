@@ -33,7 +33,7 @@ const TopCreators = async () => {
             <div className="mb-4">
               <Avatar className="mb-2 h-20 w-20">
                 <AvatarImage
-                  src={`https://robohash.org/${user.id}?set=set3`}
+                  src={`https://robohash.org/${user.email}?set=set4`}
                   alt={user.name}
                   className="h-20 w-20"
                 />

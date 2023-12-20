@@ -67,9 +67,21 @@
   }
 }
 
-.projectDesc strong {
-  background-color: red;
+.projectDesc a {
+  color: red !important;
   text-decoration: underline;
+}
+
+.projectDesc ul {
+  list-style: decimal;
+}
+
+.projectDesc ol {
+  list-style: disc;
+}
+
+.projectDesc li {
+  margin-left: 25px;
 }
 
 .noscroll::-webkit-scrollbar {

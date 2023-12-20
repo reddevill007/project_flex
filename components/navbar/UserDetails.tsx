@@ -23,7 +23,7 @@ export default function UserDetails() {
           <Avatar className="w-12 h-12">
             <AvatarImage
               className="z-1 h-12 w-12"
-              src={`https://robohash.org/${data?.user?.email}?set=set3`}
+              src={`https://robohash.org/${data?.user?.email}?set=set4`}
               alt={data?.user?.name ? data?.user?.name : "profilepic"}
             />
             <AvatarFallback>{getInitials(data?.user?.name)}</AvatarFallback>
