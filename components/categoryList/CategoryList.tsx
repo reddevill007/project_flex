@@ -23,13 +23,18 @@ const CategoryList = async () => {
 
   return (
     <div className="container mx-auto py-20">
-      <h1>Populat Category</h1>
-      <div className="flex gap-10 overflow-x-scroll noscroll">
+      <h1 className="text-4xl mb-3">Populat Category</h1>
+      <div className="flex gap-4 overflow-x-scroll noscroll">
         {categories?.map((category: Category) => (
-          <Link key={category.id} href={`/blog?cat=${category.slug}`}>
-            <p className="border w-fit px-3 py-2 rounded-full whitespace-nowrap noscrollbar">
-              &lt;/&gt; {category.title}
-            </p>
+          <Link
+            key={category.id}
+            href={`/blog?cat=${category.slug}`}
+            className="flex gap-2 w-fit border items-center justify-center p-3 rounded bg-muted"
+          >
+            <span className="bg-black p-2 rounded-full text-white h-fit">
+              &lt;/&gt;
+            </span>
+            <p className="w-fit whitespace-nowrap">{category.title}</p>
           </Link>
         ))}
       </div>

@@ -1,11 +1,29 @@
 // FileInput.tsx
-import React, { ChangeEvent } from "react";
+import { uploadImage } from "@/utils/uploadImage";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 interface FileInputProps {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  setMedia: React.Dispatch<React.SetStateAction<string>>;
+  setFile: React.Dispatch<React.SetStateAction<File | null>>;
+  file: File | null;
 }
 
-const FileInput: React.FC<FileInputProps> = ({ onChange }) => {
+const FileInput: React.FC<FileInputProps> = ({
+  onChange,
+  setMedia,
+  setFile,
+  file,
+}) => {
+  let updateMedia;
+
+  useEffect(() => {
+    if (file) {
+      updateMedia = setMedia;
+      uploadImage(file, updateMedia);
+    }
+  }, [file]);
+
   return (
     <div className="max-w-md h-40 rounded-lg border-2 border-dashed flex items-center justify-center">
       <label htmlFor="file" className="cursor-pointer text-center p-4 md:p-8">

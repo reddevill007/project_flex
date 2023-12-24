@@ -10,6 +10,7 @@ import SelectedImage from "@/components/editor/SelectedImage";
 import PublishButton from "@/components/editor/PublishButton";
 import RichTextEditor from "@/components/editor/RichTextEditor";
 import { richTextEditorModules } from "@/utils/constants";
+import Selection from "@/components/editor/Selection";
 
 const CreateProjectPage: React.FC = () => {
   const { status } = useSession();
@@ -22,9 +23,10 @@ const CreateProjectPage: React.FC = () => {
     codeLink: "",
   });
 
-  const [file, setFile] = useState<File | null>(null);
   const [value, setValue] = useState("");
+  const [file, setFile] = useState<File | null>(null);
   const [catSlug, setCatSlug] = useState("");
+  const [media, setMedia] = useState("");
   const [uploading, setUploading] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +40,6 @@ const CreateProjectPage: React.FC = () => {
   const handleEditorChange = (content: string) => {
     setValue(content);
   };
-
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
@@ -60,7 +61,7 @@ const CreateProjectPage: React.FC = () => {
           title: details.title,
           tech: details.tech,
           desc: value,
-          img: file ? URL.createObjectURL(file) : "",
+          img: media,
           catSlug: catSlug || "devops",
           projectLink: details.liveLink,
           projectCode: details.codeLink,
@@ -119,7 +120,13 @@ const CreateProjectPage: React.FC = () => {
             value={details.codeLink}
             onChange={handleChange}
           />
-          <FileInput onChange={handleFileChange} />
+          <Selection setCatSlug={setCatSlug} />
+          <FileInput
+            onChange={handleFileChange}
+            setMedia={setMedia}
+            file={file}
+            setFile={setFile}
+          />
           {file && <SelectedImage file={file} onRemove={removeSelectedImage} />}
           <RichTextEditor
             value={value}

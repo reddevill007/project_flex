@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import useSWR from "swr";
 import { toast } from "sonner";
+import moment from "moment";
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -72,14 +73,14 @@ const Comments = ({ postSlug }: { postSlug: string }) => {
             >
               <div className="flex items-center gap-4">
                 <img
-                  src={comment.user.image}
+                  src={`https://robohash.org/${comment.user.email}?set=set4`}
                   alt={comment.user.name}
                   className="h-10 w-10 rounded-full"
                 />
                 <div>
                   <p className="text-xl">{comment.user.name}</p>
-                  <p className="text-xs">
-                    {comment.createdAt.toString().substring(0, 10)}
+                  <p className="text-gray-400 text-sm">
+                    {moment(comment.createdAt).fromNow()}
                   </p>
                 </div>
               </div>

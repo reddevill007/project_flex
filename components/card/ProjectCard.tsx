@@ -35,17 +35,19 @@ const ProjectCard = ({ post }: { post: Post }) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {post.img ? (
-          <img src={post.img} alt="" className="w-full rounded" />
-        ) : (
-          <img
-            src={`/images/random/random${Math.floor(
-              Math.random() * 4 + 1
-            )}.png`}
-            alt={post.slug}
-            className="w-full rounded"
-          />
-        )}
+        <div className="w-full flex justify-center items-center bg-gradient-to-r from-indigo-800 to-cyan-600 p-2 rounded-lg mb-4">
+          {post.img ? (
+            <img src={post.img} alt="" className="w-72 h-72 object-contain" />
+          ) : (
+            <img
+              src={`/images/random/random${Math.floor(
+                Math.random() * 4 + 1
+              )}.png`}
+              alt=""
+              className="w-72 h-72 object-contain"
+            />
+          )}
+        </div>
       </CardContent>
       <CardFooter>
         <div className="w-full flex justify-end items-center px-4">

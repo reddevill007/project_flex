@@ -35,7 +35,7 @@ const CardList = async ({ page, cat }: { page: number; cat: string }) => {
         <NoPosts cat={cat} />
       ) : (
         <>
-          <div className="flex flex-col gap-4 mb-10">
+          <div className="flex items-start justify-center gap-4 mb-10 flex-wrap">
             {posts.map((post: Post) => (
               <ProjectCard post={post} key={post.id} />
             ))}

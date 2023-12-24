@@ -13,7 +13,7 @@ const SearchResult = ({ loading, projects, query }: SearchResultProp) => {
   return (
     <div className="absolute top-[44px] left-0 w-full">
       {loading ? (
-        <div className="rounded p-2 w-full h-fit bg-[#f0ecee] text-[#e45500] flex items-center justify-center">
+        <div className="rounded p-2 w-full h-fit bg-white text-[#e45500] flex items-center justify-center shadow-neutral-700">
           <ColorRing
             visible={true}
             height="30"
@@ -25,7 +25,7 @@ const SearchResult = ({ loading, projects, query }: SearchResultProp) => {
           />
         </div>
       ) : projects?.length > 0 && query.length > 0 ? (
-        <div className="rounded p-2 pt-0 w-full h-fit bg-[#f0ecee] text-[#e45500]">
+        <div className="rounded p-2 pt-0 w-full h-fit bg-white text-[#e45500] shadow-neutral-700">
           {projects.map((project) => (
             <Link
               href={`/posts/${project.slug}`}
@@ -37,7 +37,7 @@ const SearchResult = ({ loading, projects, query }: SearchResultProp) => {
           ))}
         </div>
       ) : query.length > 0 ? (
-        <div className="rounded p-2 w-full h-fit bg-[#f0ecee] text-[#e45500]">
+        <div className="rounded p-2 w-full h-fit bg-white text-[#e45500] shadow-neutral-700">
           <p>No Result Found</p>
         </div>
       ) : null}

@@ -25,28 +25,25 @@ const TopCreators = async () => {
 
   return (
     <div className="container mt-9">
-      <h1 className="text-4xl">Browse our top creators</h1>
+      <h1 className="text-4xl mb-3">Browse our top creators</h1>
 
-      <div className="flex overflow-x-auto">
+      <div className="flex overflow-x-auto gap-5 noscroll">
         {users.map((user: User) => (
-          <div className="mb-4 p-4">
-            <div className="mb-4">
-              <Avatar className="mb-2 h-20 w-20">
-                <AvatarImage
-                  src={`https://robohash.org/${user.email}?set=set4`}
-                  alt={user.name}
-                  className="h-20 w-20"
-                />
-                <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
-              </Avatar>
-              <div>
-                <p className="text-sm font-medium leading-none">{user.name}</p>
-              </div>
-            </div>
-            <Link href={`/user/${user.id}`}>
-              <Button defaultValue="edit">Visit</Button>
-            </Link>
-          </div>
+          <Link
+            key={user.id}
+            href={`/user/${user.id}`}
+            className="flex gap-2 w-fit border items-center justify-center p-3 rounded bg-muted"
+          >
+            <Avatar className="mb-2 h-10 w-10">
+              <AvatarImage
+                src={`https://robohash.org/${user.email}?set=set4`}
+                alt={user.name}
+                className="h-10 w-10"
+              />
+              <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
+            </Avatar>
+            <p className="w-fit whitespace-nowrap">{user.name}</p>
+          </Link>
         ))}
       </div>
     </div>

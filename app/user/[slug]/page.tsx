@@ -1,6 +1,11 @@
 import EditProfile from "@/components/edit-profile/EditProfile";
+import { Separator } from "@/components/ui/separator";
+import UserAvatar from "@/components/user-avatar/UserAvatar";
 import { User } from "@/types";
+import { convertToTitleCase } from "@/utils/constants";
 import { removeTags } from "@/utils/utils";
+import { ChevronRight } from "lucide-react";
+import moment from "moment";
 import Link from "next/link";
 
 const getData = async (slug: string) => {
@@ -18,6 +23,11 @@ const UserDetailPage = async ({ params }: any) => {
   const { slug } = params;
 
   const user: User = await getData(slug);
+
+  const getTechArray = (tech: string): string[] => {
+    const tech_arr = tech.split(" ");
+    return tech_arr;
+  };
 
   return (
     <div className="w-[calc(100%-250px)] ml-[250px] mx-auto">
@@ -44,15 +54,25 @@ const UserDetailPage = async ({ params }: any) => {
       </div>
 
       <h2 className="text-3xl">Posts ({user.Post.length})</h2>
-      <div className="flex items-center justify-center flex-wrap w-full gap-10 mb-10">
+      <div className="flex items-start justify-center flex-wrap w-full gap-10 mb-10">
         {user.Post.map((post) => (
-          <div className="w-[300px] border" key={post.id}>
-            <div>
+          <div
+            className="w-[300px] border p-3 rounded-lg bg-muted"
+            key={post.id}
+          >
+            <UserAvatar
+              userEmail={user.email}
+              userId={user.id}
+              userImage={user.image}
+              userName={user.name}
+            />
+            <Separator className="my-3" />
+            <div className="w-full flex justify-center items-center bg-gradient-to-r from-indigo-800 to-cyan-600 p-2 rounded-lg mb-4">
               {post.img ? (
                 <img
                   src={post.img}
                   alt=""
-                  className="w-96 h-auto object-cover"
+                  className="w-72 h-72 object-contain"
                 />
               ) : (
                 <img
@@ -60,19 +80,26 @@ const UserDetailPage = async ({ params }: any) => {
                     Math.random() * 4 + 1
                   )}.png`}
                   alt=""
-                  className="w-96 h-auto object-cover"
+                  className="w-72 h-72 object-contain"
                 />
               )}
             </div>
             <div className="flex flex-col justify-between">
-              <span>{post.createdAt.toString().substring(0, 10)}</span>
-              <span>{post.catSlug}</span>
-              <h3>{post.title}</h3>
-              <p>{removeTags(post.desc).substring(0, 150)}...</p>
-
-              <Link href={`/posts/${post.slug}`} className="border p-3 w-fit">
-                Read More
-              </Link>
+              <p className="text-gray-400 text-sm mb-4">
+                {moment(post.createdAt).fromNow()}
+              </p>
+              <span className="bg-[#e45500] p-1 rounded w-fit text-[#dad3cf] mb-2 text-sm">
+                {convertToTitleCase(post.catSlug)}
+              </span>
+              <h3 className="text-2xl mb-2">{post.title}</h3>
+              <p className="truncate mb-2">
+                {removeTags(post.desc).substring(0, 250)}
+              </p>
+              <div className="w-full flex justify-end items-center px-4">
+                <Link href={`/posts/${post.slug}`}>
+                  <ChevronRight />
+                </Link>
+              </div>
             </div>
           </div>
         ))}
