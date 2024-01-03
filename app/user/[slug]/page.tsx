@@ -30,7 +30,7 @@ const UserDetailPage = async ({ params }: any) => {
   };
 
   return (
-    <div className="md:w-full lg:w-[calc(100%-250px)] ml-[250px] mx-auto">
+    <div className="md:w-full lg:w-[calc(100%-250px)] lg:ml-[250px] md:ml-0 mx-auto">
       {/* Header */}
       <div className="w-full h-[200px] bg-red-900 relative mb-16">
         <img
