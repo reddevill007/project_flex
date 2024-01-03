@@ -20,3 +20,16 @@ export function getInitials(fullName?: string | null): string {
 
   return initials;
 }
+
+export const calculateMinuteRead = (text: string): number => {
+  // Assuming an average reading speed of 200 words per minute
+  const wordsPerMinute = 200;
+
+  // Counting the number of words in the input text
+  const wordCount = text.split(/\s+/).length;
+
+  // Calculating the estimated minute read
+  const minuteRead = Math.ceil(wordCount / wordsPerMinute);
+
+  return minuteRead;
+};

@@ -21,9 +21,9 @@ const getData = async () => {
 
 const Featured = async () => {
   const popularPosts: Post[] = await getData();
-  const popularPost = popularPosts[1];
+  const popularPost = popularPosts[0];
 
-  const tech_arr = popularPost.tech.split(" ");
+  const tech_arr = popularPost.tech.trim().split(" ");
 
   return (
     <div className="w-full flex items-center justify-center container">
@@ -34,7 +34,6 @@ const Featured = async () => {
         <UserAvatar
           userEmail={popularPost.user.email}
           userId={popularPost.user.id}
-          userImage={popularPost.user.image}
           userName={popularPost.user.name}
         />
         <p className="text-gray-400 text-sm">
@@ -43,7 +42,10 @@ const Featured = async () => {
         <h1 className="text-2xl font-bold">{popularPost.title}</h1>
         <div>
           {tech_arr.map((tech) => (
-            <span className="mr-4 text-sm p-1 border border-black rounded-sm">
+            <span
+              className="mr-4 text-sm p-1 border border-black rounded-sm"
+              key={tech}
+            >
               {tech}
             </span>
           ))}

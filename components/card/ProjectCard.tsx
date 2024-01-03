@@ -22,7 +22,6 @@ const ProjectCard = ({ post }: { post: Post }) => {
         <UserAvatar
           userEmail={post.user.email}
           userId={post.user.id}
-          userImage={post.user.image}
           userName={post.user.name}
         />
         <Separator />
@@ -35,7 +34,7 @@ const ProjectCard = ({ post }: { post: Post }) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="w-full flex justify-center items-center bg-gradient-to-r from-indigo-800 to-cyan-600 p-2 rounded-lg mb-4">
+        <div className="w-full flex justify-center items-center gradient_background p-2 rounded-lg mb-4">
           {post.img ? (
             <img src={post.img} alt="" className="w-72 h-72 object-contain" />
           ) : (

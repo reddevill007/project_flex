@@ -67,22 +67,135 @@
   }
 }
 
-.projectDesc a {
-  color: red !important;
-  text-decoration: underline;
+/* Reset some default styles */
+.projectDesc body,
+.projectDesc h1,
+.projectDesc h2,
+.projectDesc h4,
+.projectDesc p,
+.projectDesc ol,
+.projectDesc ul,
+.projectDesc li {
+  margin: 0;
+  padding: 0;
 }
 
+/* Set a background color for the entire page */
+.projectDesc body {
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+
+/* Reset some default styles */
+.projectDesc body,
+.projectDesc h1,
+.projectDesc h2,
+.projectDesc h4,
+.projectDesc p,
+.projectDesc ol,
+.projectDesc ul,
+.projectDesc li,
+.projectDesc a,
+.projectDesc code,
+.projectDesc pre {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a background color for the entire page */
+.projectDesc body {
+  background-color: #f4f4f4;
+}
+
+/* Center the content on the page */
+.projectDesc {
+  padding: 20px 0;
+  background-color: #fff;
+}
+
+/* Style the heading elements */
+.projectDesc h1 {
+  color: #333;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.projectDesc h2 {
+  color: #666;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.projectDesc h4 {
+  color: #333;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+/* Style the paragraphs */
+.projectDesc p {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+/* Style the lists */
+.projectDesc ol,
 .projectDesc ul {
-  list-style: decimal;
-}
-
-.projectDesc ol {
-  list-style: disc;
+  margin-bottom: 15px;
 }
 
 .projectDesc li {
-  margin-left: 25px;
+  color: #555;
+  font-size: 16px;
+  line-height: 1.5;
 }
+
+/* Style anchor links */
+.projectDesc a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.projectDesc a:hover {
+  color: #0056b3;
+}
+
+/* Style code snippets or inline code */
+.projectDesc code {
+  font-family: 'Courier New', monospace;
+  background-color: #f8f9fa;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Style preformatted text */
+.projectDesc pre {
+  font-family: 'Courier New', monospace;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: auto;
+  margin-bottom: 15px;
+}
+
+/* Style the feedback loop section differently */
+.projectDesc h2+ol {
+  margin-top: 10px;
+}
+
+/* Add some spacing between elements */
+.projectDesc br {
+  display: block;
+  margin: 15px 0;
+}
+
+
 
 .noscroll::-webkit-scrollbar {
   display: none;
@@ -102,4 +215,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.gradient_background {
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpzdmdqcz0iaHR0cDovL3N2Z2pzLmRldi9zdmdqcyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNzAwIDcwMCIgd2lkdGg9IjcwMCIgaGVpZ2h0PSI3MDAiIG9wYWNpdHk9IjAuMiI+PGRlZnM+PGZpbHRlciBpZD0ibm5ub2lzZS1maWx0ZXIiIHg9Ii0yMCUiIHk9Ii0yMCUiIHdpZHRoPSIxNDAlIiBoZWlnaHQ9IjE0MCUiIGZpbHRlclVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgcHJpbWl0aXZlVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9ImxpbmVhclJHQiI+Cgk8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC4yIiBudW1PY3RhdmVzPSI0IiBzZWVkPSIxNSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgeD0iMCUiIHk9IjAlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiByZXN1bHQ9InR1cmJ1bGVuY2UiLz4KCTxmZVNwZWN1bGFyTGlnaHRpbmcgc3VyZmFjZVNjYWxlPSI2IiBzcGVjdWxhckNvbnN0YW50PSIxIiBzcGVjdWxhckV4cG9uZW50PSIyMCIgbGlnaHRpbmctY29sb3I9IiNhYmFiYWIiIHg9IjAlIiB5PSIwJSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgaW49InR1cmJ1bGVuY2UiIHJlc3VsdD0ic3BlY3VsYXJMaWdodGluZyI+CiAgICAJCTxmZURpc3RhbnRMaWdodCBhemltdXRoPSIzIiBlbGV2YXRpb249Ijg5Ii8+CiAgCTwvZmVTcGVjdWxhckxpZ2h0aW5nPgogIDxmZUNvbG9yTWF0cml4IHR5cGU9InNhdHVyYXRlIiB2YWx1ZXM9IjAiIHg9IjAlIiB5PSIwJSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgaW49InNwZWN1bGFyTGlnaHRpbmciIHJlc3VsdD0iY29sb3JtYXRyaXgiLz4KPC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iNzAwIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iNzAwIiBmaWxsPSIjYWJhYmFiIiBmaWx0ZXI9InVybCgjbm5ub2lzZS1maWx0ZXIpIi8+PC9zdmc+), linear-gradient(-20deg, #ffffff26, #59673C), linear-gradient(45deg, #85A15E, #D0C6AF 80%);
 }

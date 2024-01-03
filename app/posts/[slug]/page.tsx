@@ -4,7 +4,11 @@ import { Post } from "@/types";
 import DeletePost from "@/components/button/DeletePost";
 import moment from "moment";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getInitials } from "@/utils/utils";
+import { getInitials, removeTags } from "@/utils/utils";
+import WpmReader from "@/components/project/WpmReader";
+import UserDetails from "@/components/navbar/UserDetails";
+import UserAvatar from "@/components/user-avatar/UserAvatar";
+import RelatedProjects from "@/components/project/RelatedProjects";
 
 const getData = async (slug: string) => {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${slug}`, {
@@ -31,76 +35,45 @@ const ProjectDetailPage = async ({ params }: any) => {
   }
 
   return (
-    <div className="container mx-auto ml-[250px] pt-10 w-[calc(100%-250px)]">
-      <div className="w-full flex justify-center items-center">
-        {post.img ? (
-          <img
-            src={post.img}
-            alt={post.slug}
-            className="rounded-xl h-60 w-auto"
+    <div className="container mx-auto lg:ml-[250px] sm:ml-0 pt-10 md:w-full lg:w-[calc(100%-250px)]">
+      <div className="flex items-center justify-center w-full">
+        <div className="flex flex-col gap-2 w-full lg:max-w-[680px]">
+          <h1 className="text-4xl font-bold">{post.title}</h1>
+          <UserAvatar
+            userEmail={post.user.email}
+            userId={post.user.id}
+            userName={post.user.name}
           />
-        ) : (
-          <img
-            src={`/images/random/random${Math.floor(
-              Math.random() * 4 + 1
-            )}.png`}
-            alt={post.slug}
-            className="rounded-xl h-60 w-full object-cover"
-          />
-        )}
-      </div>
-      <h1 className="mb-10 text-7xl">{post.title}</h1>
-      <DeletePost id={post.id} authCheck={post.user.email} />
+          <WpmReader text={removeTags(post.desc)} />
+          <p>{moment(post.createdAt).fromNow()}</p>
 
-      <div className="flex w-full gap-4 mb-10">
-        <Link
-          className="px-3 py-2 border"
-          href={post.projectLink}
-          target="_blank"
-        >
-          Project Preview
-        </Link>
-        <Link
-          className="px-3 py-2 border"
-          href={post.projectCode}
-          target="_blank"
-        >
-          Project Code
-        </Link>
-      </div>
-
-      <div>
-        <Link href={`/user/${post.user.id}`}>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center space-x-4">
-              <Avatar>
-                <AvatarImage
-                  src={`https://robohash.org/${post.user.email}?set=set4`}
-                  alt={post.user.name}
-                />
-                <AvatarFallback>{getInitials(post.user.name)}</AvatarFallback>
-              </Avatar>
-              <div>
-                <p className="text-sm font-medium leading-none">
-                  {post.user.name}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {post.user.email}
-                </p>
-              </div>
-            </div>
+          <div className="w-full flex justify-center items-center gradient_background p-2 rounded-lg mb-4">
+            {post.img ? (
+              <img
+                src={post.img}
+                alt=""
+                className="w-[90%] h-[500px] object-contain"
+              />
+            ) : (
+              <img
+                src={`/images/random/random${Math.floor(
+                  Math.random() * 4 + 1
+                )}.png`}
+                alt=""
+                className="w-72 h-72 object-contain"
+              />
+            )}
           </div>
-        </Link>
-        <p>{moment(post.createdAt).fromNow()}</p>
-      </div>
 
-      <div className="flex mb-10">
-        <div
-          className="projectDesc"
-          dangerouslySetInnerHTML={{ __html: post.desc }}
-        />
+          <div
+            dangerouslySetInnerHTML={{ __html: post.desc }}
+            className="projectDesc"
+          />
+          <DeletePost id={post.id} authCheck={post.user.email} />
+          <Comments postSlug={slug} />
+          <RelatedProjects category={post?.cat?.slug} currentPostId={post.id} />
+        </div>
       </div>
-      <Comments postSlug={slug} />
     </div>
   );
 };

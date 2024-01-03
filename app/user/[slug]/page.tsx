@@ -30,7 +30,7 @@ const UserDetailPage = async ({ params }: any) => {
   };
 
   return (
-    <div className="w-[calc(100%-250px)] ml-[250px] mx-auto">
+    <div className="md:w-full lg:w-[calc(100%-250px)] ml-[250px] mx-auto">
       {/* Header */}
       <div className="w-full h-[200px] bg-red-900 relative mb-16">
         <img
@@ -63,7 +63,6 @@ const UserDetailPage = async ({ params }: any) => {
             <UserAvatar
               userEmail={user.email}
               userId={user.id}
-              userImage={user.image}
               userName={user.name}
             />
             <Separator className="my-3" />

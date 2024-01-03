@@ -5,10 +5,9 @@ import Link from "next/link";
 type Props = {
   userId: string | undefined;
   userName: string | undefined;
-  userImage: string | undefined;
   userEmail: string | undefined;
 };
-const UserAvatar = ({ userId, userName, userImage, userEmail }: Props) => {
+const UserAvatar = ({ userId, userName, userEmail }: Props) => {
   return (
     <Link href={`/user/${userId}`} className="z-1">
       <div className="flex items-center gap-4">

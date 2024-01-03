@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +10,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { getInitials } from "@/utils/utils";
 import { signOut, useSession } from "next-auth/react";
 import { ChevronDown } from "lucide-react";
-import Link from "next/link";
 
 export default function UserDetails() {
   const { data } = useSession();
@@ -19,17 +17,14 @@ export default function UserDetails() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="flex items-center justify-center gap-2">
-          <Avatar className="w-12 h-12">
-            <AvatarImage
-              className="z-1 h-12 w-12"
-              src={`https://robohash.org/${data?.user?.email}?set=set4`}
-              alt={data?.user?.name ? data?.user?.name : "profilepic"}
-            />
-            <AvatarFallback>{getInitials(data?.user?.name)}</AvatarFallback>
-          </Avatar>
-          <ChevronDown />
-        </div>
+        <Avatar className="w-12 h-12 bg-black flex items-center justify-center cursor-pointer">
+          <AvatarImage
+            className="z-1 h-10 w-10"
+            src={`https://robohash.org/${data?.user?.email}?set=set4`}
+            alt={data?.user?.name ? data?.user?.name : "profilepic"}
+          />
+          <AvatarFallback>{getInitials(data?.user?.name)}</AvatarFallback>
+        </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>

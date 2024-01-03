@@ -6,6 +6,7 @@ import {
   Home,
   LogIn,
   LogOut,
+  MessagesSquare,
   PencilLine,
   User,
 } from "lucide-react";
@@ -13,12 +14,14 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import HomeSVG from "../svg/HomeSVG";
+import SearchSVG from "../svg/SearchSVG";
 
 const Sidebar = () => {
   const { status, data } = useSession();
 
   return (
-    <div className="w-[250px] bg-[#f0ecee] border-r border-[#dad3cf] h-screen fixed top-0 left-0 flex flex-col justify-between">
+    <div className="w-[250px] bg-[#f0ecee] border-r border-[#dad3cf] h-screen fixed top-0 left-0 lg:flex md:hidden flex-col justify-between">
       {/* Logo */}
       <div>
         <div className="flex items-center justify-center border-b mb-4 p-3">
@@ -27,7 +30,7 @@ const Sidebar = () => {
         </div>
         <div>
           <Link href="/" className="border-b mb-4 p-3 flex gap-3 items-centers">
-            <Home />
+            <HomeSVG />
             <span>Home</span>
           </Link>
           <Link
@@ -36,6 +39,13 @@ const Sidebar = () => {
           >
             <FolderKanban />
             <span>Projects</span>
+          </Link>
+          <Link
+            href="/chatroom"
+            className="border-b mb-4 p-3 flex gap-3 items-centers"
+          >
+            <MessagesSquare />
+            <span>Chat</span>
           </Link>
           <Link
             href="/write"
@@ -48,7 +58,7 @@ const Sidebar = () => {
             href="/search"
             className="border-b mb-4 p-3 flex gap-3 items-centers"
           >
-            <FolderSearch />
+            <SearchSVG />
             <span>Search</span>
           </Link>
           <Link

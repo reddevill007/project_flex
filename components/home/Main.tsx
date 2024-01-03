@@ -12,7 +12,7 @@ type MainProps = {
 
 const Main = ({ page, cat }: MainProps) => {
   return (
-    <div className="w-[calc(100%-250px)] ml-[250px] bg-[#fffbfd]">
+    <div className="md:w-full lg:w-[calc(100%-250px)] lg:ml-[250px] sm:ml-0 bg-[#fffbfd]">
       <Navbar />
       <Featured />
       <TopCreators />
