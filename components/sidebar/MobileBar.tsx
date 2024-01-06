@@ -18,6 +18,8 @@ import HomeSVG from "../svg/HomeSVG";
 import SearchSVG from "../svg/SearchSVG";
 
 const MobileBar = () => {
+  const { status } = useSession();
+
   return (
     <div className="fixed flex justify-between items-center bg-[#f0ecee] w-full z-10 py-3 bottom-0 left-0 md:hidden">
       <Link href="/" className="border-b mb-4 p-3 flex gap-3 items-centers">
