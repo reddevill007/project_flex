@@ -40,7 +40,7 @@ const Featured = async () => {
           {moment(popularPost.createdAt).fromNow()}
         </p>
         <h1 className="text-2xl font-bold">{popularPost.title}</h1>
-        <div>
+        <div className="flex flex-wrap">
           {tech_arr.map((tech) => (
             <span
               className="mr-4 text-sm p-1 border border-black rounded-sm"
