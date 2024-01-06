@@ -1,6 +1,6 @@
 "use client";
 
-import { Comments } from "@/types";
+import { Comment } from "@/types";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -66,7 +66,7 @@ const Comments = ({ postSlug }: { postSlug: string }) => {
         "Loading..."
       ) : (
         <div className="flex flex-col gap-10">
-          {data?.map((comment: Comments) => (
+          {data?.map((comment: Comment) => (
             <div
               key={comment.id}
               className="w-full p-10 rounded-lg bg-white text-gray-700 flex flex-col gap-5 border"
