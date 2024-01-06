@@ -35,7 +35,7 @@ const ProjectDetailPage = async ({ params }: any) => {
   }
 
   return (
-    <div className="container mx-auto lg:ml-[250px] sm:ml-0 pt-10 md:w-full lg:w-[calc(100%-250px)]">
+    <div className="container mx-auto lg:ml-[250px] sm:ml-0 pt-10 w-full lg:w-[calc(100%-250px)]">
       <div className="flex items-center justify-center w-full">
         <div className="flex flex-col gap-2 w-full lg:max-w-[680px]">
           <h1 className="text-4xl font-bold">{post.title}</h1>

@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-full pt-6 mb-9">
-      <div className="container flex justify-between items-center h-full">
+      <div className="container flex justify-between items-center h-full flex-col gap-5 md:gap-0 md:flex-row">
         <div>
           {status === "unauthenticated" ? (
             <div className="text-[#091151]">
@@ -38,8 +38,6 @@ const Navbar = () => {
         <div>
           <SearchProjects />
         </div>
-
-        {status === "unauthenticated" ? "Login" : <UserDetails />}
       </div>
     </nav>
   );

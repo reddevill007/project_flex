@@ -53,7 +53,7 @@ export type Post = {
   cat: Category;
   userEmail: string;
   user: User;
-  comments: Comments[];
+  comments: Comment[];
   likes: Like[];
   projectLink: string;
   projectCode: string;
@@ -67,7 +67,7 @@ export type Category = {
   Posts: Post[];
 };
 
-export type Comments = {
+export type Comment = {
   id: string;
   createdAt: Date;
   desc: string;

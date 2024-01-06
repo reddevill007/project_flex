@@ -21,7 +21,7 @@ const Sidebar = () => {
   const { status, data } = useSession();
 
   return (
-    <div className="w-[250px] bg-[#f0ecee] border-r border-[#dad3cf] h-screen fixed top-0 left-0 lg:flex md:hidden flex-col justify-between">
+    <div className="w-[250px] bg-[#f0ecee] border-r border-[#dad3cf] h-screen fixed top-0 left-0 lg:flex hidden flex-col justify-between">
       {/* Logo */}
       <div>
         <div className="flex items-center justify-center border-b mb-4 p-3">

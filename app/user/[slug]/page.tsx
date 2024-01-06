@@ -1,7 +1,7 @@
 import EditProfile from "@/components/edit-profile/EditProfile";
 import { Separator } from "@/components/ui/separator";
 import UserAvatar from "@/components/user-avatar/UserAvatar";
-import { User } from "@/types";
+import { Comment, User } from "@/types";
 import { convertToTitleCase } from "@/utils/constants";
 import { removeTags } from "@/utils/utils";
 import { ChevronRight } from "lucide-react";
@@ -24,13 +24,15 @@ const UserDetailPage = async ({ params }: any) => {
 
   const user: User = await getData(slug);
 
+  console.log(user);
+
   const getTechArray = (tech: string): string[] => {
     const tech_arr = tech.split(" ");
     return tech_arr;
   };
 
   return (
-    <div className="md:w-full lg:w-[calc(100%-250px)] lg:ml-[250px] md:ml-0 mx-auto">
+    <div className="w-full lg:w-[calc(100%-250px)] lg:ml-[250px] md:ml-0 mx-auto">
       {/* Header */}
       <div className="w-full h-[200px] bg-red-900 relative mb-16">
         <img
@@ -105,16 +107,33 @@ const UserDetailPage = async ({ params }: any) => {
       </div>
 
       <h2 className="text-3xl">Comments ({user.Comments.length})</h2>
-      <div>
-        {user.Comments.map((comment: any) => (
-          <div key={comment.id}>
-            <p className="text-xs">
-              {comment.createdAt.toString().substring(0, 10)}
+      <div className="p-5">
+        {user.Comments.map((comment: Comment) => (
+          <div key={comment.id} className="mb-4 border-b pb-3">
+            <div className="flex gap-2 items-center mb-4">
+              <UserAvatar
+                userEmail={comment.post.user.email}
+                userId={comment.post.user.id}
+                userName={comment.post.user.name}
+              />
+              <Link href={`/posts/${comment.post.slug}`}>
+                <h3>{comment.post.title}</h3>
+              </Link>
+            </div>
+            <p className="text-sm text-gray-500 my-2">
+              {moment(comment.post.createdAt).fromNow()}
             </p>
-            <p>{comment.desc}</p>
-            <Link href={`/posts/${comment.postSlug}`}>
-              <h1>{comment.postSlug}</h1>
-            </Link>
+            <div className="flex gap-2 items-center ml-5">
+              <UserAvatar
+                userEmail={comment.user.email}
+                userId={comment.user.id}
+                userName={comment.user.name}
+              />
+              <h3>{comment.desc}</h3>
+            </div>
+            <p className="text-sm text-gray-500 ml-5 mt-2">
+              {moment(comment.createdAt).fromNow()}
+            </p>
           </div>
         ))}
       </div>

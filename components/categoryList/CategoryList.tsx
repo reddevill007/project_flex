@@ -24,6 +24,7 @@ const CategoryList = async () => {
   return (
     <div className="container mx-auto py-20">
       <h1 className="text-4xl mb-3">Populat Category</h1>
+      <img src="/desktop.svg" className="h-5 w-5" alt="img" />
       <div className="flex gap-4 overflow-x-scroll noscroll">
         {categories?.map((category: Category) => (
           <Link
@@ -31,9 +32,9 @@ const CategoryList = async () => {
             href={`/blog?cat=${category.slug}`}
             className="flex gap-2 w-fit border items-center justify-center p-3 rounded bg-muted"
           >
-            <span className="bg-black p-2 rounded-full text-white h-fit">
-              &lt;/&gt;
-            </span>
+            <div className="bg-white p-2 rounded-full text-white h-fit">
+              <img src={category.img} alt="img" />
+            </div>
             <p className="w-fit whitespace-nowrap">{category.title}</p>
           </Link>
         ))}

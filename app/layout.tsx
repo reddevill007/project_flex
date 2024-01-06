@@ -6,7 +6,7 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import AuthProvider from "@/providers/AuthProvider";
-import Sidebar from "@/components/sidebar/Sidebar";
+import SidebarPicker from "@/components/sidebar/SidebarPicker";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -31,7 +31,7 @@ export default function RootLayout({
         <Toaster richColors position="top-center" />
         <NextTopLoader color="#2299DD" />
         <AuthProvider>
-          <Sidebar />
+          <SidebarPicker />
           {children}
         </AuthProvider>
       </body>
