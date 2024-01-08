@@ -1,7 +1,6 @@
 import ComingSoon from "@/components/coming-soon/ComingSoon";
-import React from "react";
 
-const PostPage = () => {
+const ChatRoom = () => {
   return (
     <div className="mx-auto p-5 md:p-0 md:w-full lg:w-[calc(100%-250px)] lg:ml-[250px] sm:ml-0">
       <ComingSoon />
@@ -9,4 +8,4 @@ const PostPage = () => {
   );
 };
 
-export default PostPage;
+export default ChatRoom;

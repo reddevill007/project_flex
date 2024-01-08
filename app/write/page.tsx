@@ -84,7 +84,7 @@ const CreateProjectPage: React.FC = () => {
   };
 
   return (
-    <div className="mt-16 mx-auto md:w-full lg:w-[calc(100%-250px)] lg:ml-[250px] sm:ml-0 flex flex-col gap-4 items-center justify-center">
+    <div className="my-16 mx-auto p-5 md:p-0 md:w-full lg:w-[calc(100%-250px)] lg:ml-[250px] sm:ml-0 flex flex-col gap-4 items-center justify-center">
       <h1 className="text-4xl font-bold">Upload Your Project</h1>
       <p>Start Uploading your project and let the world see it</p>
 
